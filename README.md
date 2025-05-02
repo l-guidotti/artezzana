@@ -1,4 +1,4 @@
-# 🧺 Feira+ – Plataforma para Feirantes
+# 🧺 Artezzana – Plataforma para Feirantes
 
 Uma aplicação web interativa desenvolvida como projeto da disciplina **Desenvolvimento Front-End 1**, com foco em **HTML5**, **CSS3** e **JavaScript**. A proposta é criar uma plataforma onde feirantes possam divulgar seus produtos e consumidores possam encontrá-los de forma fácil, acessível e responsiva.
 

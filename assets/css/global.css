@@ -1,9 +1,86 @@
 *{
     padding: 0;
     margin: 0;
+    box-sizing: border-box;
 }
 
-nav{
+body {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+nav.navbar {
+    background-color: rgb(133, 133, 133);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 20px;
+    position: relative;
+}
+
+nav .logo img {
+    max-width: 50px;
+    height: 50px;
+}
+
+nav .nav-links {
+    list-style: none;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: rgb(255, 255, 255);
+    font-weight: bold;
+}
+
+.menu-toggle {
+    display: none;
+    font-size: 28px;
+    color: rgb(255, 255, 255);
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+@media (max-width: 768px) {
+    .menu-toggle {
+        display: block;
+    }
+
+    .nav-links {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 60px;
+        right: 20px;
+        background-color: blueviolet;
+        padding: 10px;
+        border-radius: 8px;
+        z-index: 10;
+    }
+
+    .nav-links.show {
+        display: flex;
+    }
+
+    .nav-links li {
+        margin: 10px 0;
+    }
+}
+
+@media (min-width: 769px) {
+    .nav-links {
+        display: flex;
+        gap: 20px;
+        align-items: center;
+    }
+
+    .nav-links li {
+        margin: 0;
+    }
+}
+
+
+/* nav{
     background-color: blueviolet;
     display: flex;
     justify-content: space-between;
@@ -20,7 +97,7 @@ nav ul{
     gap: 20px;
     padding: 20px;
 }
-
+*/
 main h1{
     text-align: center;
-}
+} 
