@@ -1,13 +1,43 @@
 # 🧺 Artezzana – Plataforma para Feirantes
 
-Uma aplicação web interativa desenvolvida como projeto da disciplina **Desenvolvimento Front-End 1**, com foco em **HTML5**, **CSS3** e **JavaScript**. A proposta é criar uma plataforma onde feirantes possam divulgar seus produtos e consumidores possam encontrá-los de forma fácil, acessível e responsiva.
+---
+
+# Índice
+
+1. [Introdução](#introdução)
+2. [Funcionalidades](#funcionalidades)
+3. [Conponentes da Interface](#componentes_da_interface)
+4. [Tecnologias Utilizadas](#tecnologias_utilizadas)
+5. [Público-alvo](#publico-alvo)
+6. [Motivação](#motivacao)
+7. [Como executar o projeto](#como-executar-o-projeto)
 
 ---
+
+## Introdução
+
+Uma aplicação web interativa desenvolvida como projeto da disciplina **Desenvolvimento Front-End 1**, com foco em **HTML5**, **CSS3** e **JavaScript**. A proposta é criar uma plataforma onde feirantes possam divulgar seus produtos e consumidores possam encontrá-los de forma fácil, acessível e responsiva.
 
 ## 🚀 Funcionalidades
 
 - Página inicial com informações da plataforma
-.
+- Navbar responsiva com menu hambúrguer funcional em telas pequenas
+
+---
+
+## 🧩 Componentes da Interface
+
+### ✅ Navbar responsiva
+
+A aplicação possui uma **barra de navegação (navbar)** fixa no topo, construída com HTML semântico (`<nav>` e `<ul>`), com as seguintes características:
+
+- **Menu hambúrguer funcional** em dispositivos móveis (até 768px)
+- Interatividade com JavaScript puro para alternar a visibilidade do menu
+- Layout responsivo utilizando **media queries**
+- Estilo ajustado para desktop e mobile (mobile-first)
+- Links para as páginas principais: Buscar, Carrinho, Pedido e Perfil
+
+A navbar foi estilizada no arquivo `/assets/css/global.css` e seu comportamento dinâmico implementado em `/assets/js/index.js`.
 
 ---
 
