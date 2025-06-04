@@ -8,8 +8,8 @@
 2. [Funcionalidades](#funcionalidades)
 3. [Conponentes da Interface](#componentes_da_interface)
 4. [Tecnologias Utilizadas](#tecnologias_utilizadas)
-5. [Público-alvo](#publico-alvo)
-6. [Motivação](#motivacao)
+5. [Público-alvo](#público-alvo)
+6. [Motivação](#motivação)
 7. [Como executar o projeto](#como-executar-o-projeto)
 
 ---
@@ -18,14 +18,14 @@
 
 Uma aplicação web interativa desenvolvida como projeto da disciplina **Desenvolvimento Front-End 1**, com foco em **HTML5**, **CSS3** e **JavaScript**. A proposta é criar uma plataforma onde feirantes possam divulgar seus produtos e consumidores possam encontrá-los de forma fácil, acessível e responsiva.
 
-## 🚀 Funcionalidades
+## Funcionalidades
 
 - Página inicial com informações da plataforma
 - Navbar responsiva com menu hambúrguer funcional em telas pequenas
 
 ---
 
-## 🧩 Componentes da Interface
+## Componentes da Interface
 
 ### ✅ Navbar responsiva
 
@@ -41,7 +41,7 @@ A navbar foi estilizada no arquivo `/assets/css/global.css` e seu comportamento 
 
 ---
 
-## 📱 Tecnologias Utilizadas
+## Tecnologias Utilizadas
 
 - **HTML5** (estrutura semântica)
 - **CSS3** (Flexbox, Grid, Media Queries)
@@ -53,20 +53,20 @@ A navbar foi estilizada no arquivo `/assets/css/global.css` e seu comportamento 
 
 ---
 
-## 👥 Público-alvo
+## Público-alvo
 
 - Consumidores interessados em produtos de feira
 - Feirantes locais que desejam divulgar seus produtos e localização
 
 ---
 
-## 🧠 Motivação
+## Motivação
 
 Fortalecer a presença digital dos feirantes e facilitar o acesso a produtos locais e artesanais, promovendo uma economia mais justa e regionalizada. Esse projeto também se conecta diretamente com o meu projeto de **TCC**, que visa desenvolver uma plataforma completa para pequenos produtores.
 
 ---
 
-## 🛠️ Como executar o projeto
+## Como executar o projeto
 
 1. Clone este repositório:
 ```bash
