@@ -13,15 +13,13 @@
         <div class="container">
             <div class="logo">
                 <div class="logo-icon">
-                    <img src="./assets/images/logo-png.png" alt="logo-artezzana">
+                    <img class="image-icon" src="./assets/images/logo-png.png" alt="logo-artezzana">
                 </div>
                 <h1>Artezzana</h1>
             </div>
-            <nav class="nav">
-                <a href="#" class="nav-link">Buscar</a>
-                <a href="#" class="nav-link">Carrinho</a>
-                <a href="#" class="nav-link">Pedido</a>
-                <a href="#" class="nav-link">Perfil</a>
+             <nav class="nav">
+                <a href="./pages/login.html" class="nav-link">Login</a>
+                <a href="./pages/login.html#" class="nav-link">Cadastro</a>
             </nav>
             <button class="mobile-menu-btn" onclick="toggleMobileMenu()">
                 <span></span>
@@ -43,7 +41,7 @@
                 </div>
             </div>
             <div class="hero-image">
-                <img src="/placeholder.svg?height=400&width=500" alt="Produtores locais" />
+                <img src="/assets/img/home-page.jpg" alt="Produtores locais" />
             </div>
         </div>
     </section>
@@ -68,37 +66,37 @@
         <div class="container">
             <h3>Categorias</h3>
             <div class="categories-grid">
-                <div class="category-card" onclick="filterByCategory('frutas-verduras')">
+                <div class="category-card" onclick="redirectToLogin()">
                     <div class="category-icon">🥕</div>
                     <h4>Frutas & Verduras</h4>
                     <p>Produtos frescos da horta</p>
                 </div>
-                <div class="category-card" onclick="filterByCategory('artesanato')">
+                <div class="category-card" onclick="redirectToLogin()">
                     <div class="category-icon">🎨</div>
                     <h4>Artesanato</h4>
                     <p>Peças únicas feitas à mão</p>
                 </div>
-                <div class="category-card" onclick="filterByCategory('doces-conservas')">
+                <div class="category-card" onclick="redirectToLogin()">
                     <div class="category-icon">🍯</div>
                     <h4>Doces & Conservas</h4>
                     <p>Sabores caseiros tradicionais</p>
                 </div>
-                <div class="category-card" onclick="filterByCategory('laticínios')">
+                <div class="category-card" onclick="redirectToLogin()">
                     <div class="category-icon">🧀</div>
                     <h4>Laticínios</h4>
                     <p>Queijos e derivados artesanais</p>
                 </div>
-                <div class="category-card" onclick="filterByCategory('plantas')">
+                <div class="category-card" onclick="redirectToLogin()">
                     <div class="category-icon">🌱</div>
                     <h4>Plantas & Mudas</h4>
                     <p>Verde para seu lar</p>
                 </div>
-                <div class="category-card" onclick="filterByCategory('temperos')">
+                <div class="category-card" onclick="redirectToLogin()">
                     <div class="category-icon">🌿</div>
                     <h4>Temperos & Ervas</h4>
                     <p>Sabores naturais</p>
                 </div>
-                <div class="category-card" onclick="filterByCategory('temperos')">
+                <div class="category-card" onclick="redirectToLogin()">
                     <div class="category-icon">🍞</div>
                     <h4>Pães</h4>
                     <p>Pães e deivados</p>
@@ -180,9 +178,7 @@
                 <div class="footer-section">
                     <div class="logo">
                         <div class="logo-icon">
-                            <span></span>
-                            <span></span>
-                            <span></span>
+                            <img class="image-icon" src="./assets/images/logo-png.png" alt="logo-artezzana">
                         </div>
                         <h4>Artezzana</h4>
                     </div>
@@ -191,7 +187,7 @@
                 <div class="footer-section">
                     <h5>Para Produtores</h5>
                     <ul>
-                        <li><a href="#">Cadastre-se</a></li>
+                        <li><a href="./pages/login.html">Cadastre-se</a></li>
                         <li><a href="#">Como Vender</a></li>
                         <li><a href="#">Suporte</a></li>
                     </ul>

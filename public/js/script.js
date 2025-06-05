@@ -7,7 +7,7 @@ const products = [
         price: "R$ 8,00/kg",
         producer: "Sítio da Dona Maria",
         category: "frutas-verduras",
-        image: "/placeholder.svg?height=200&width=280"
+        image: "../assets/img/tomates.jpg?height=200&width=280"
     },
     {
         id: 2,
@@ -16,7 +16,7 @@ const products = [
         price: "R$ 45,00",
         producer: "Artesanato do João",
         category: "artesanato",
-        image: "/placeholder.svg?height=200&width=280"
+        image: "../assets/img/vaso-ceramico.jpg?height=200&width=280"
     },
     {
         id: 3,
@@ -25,7 +25,7 @@ const products = [
         price: "R$ 25,00",
         producer: "Apiário São José",
         category: "doces-conservas",
-        image: "/placeholder.svg?height=200&width=280"
+        image: "../assets/img/mel.jpg?height=200&width=280"
     },
     {
         id: 4,
@@ -34,7 +34,7 @@ const products = [
         price: "R$ 35,00/kg",
         producer: "Fazenda Esperança",
         category: "laticínios",
-        image: "/placeholder.svg?height=200&width=280"
+        image: "../assets/img/queijo-minas.jpg?height=200&width=280"
     },
     {
         id: 5,
@@ -43,7 +43,7 @@ const products = [
         price: "R$ 5,00",
         producer: "Viveiro Verde Vida",
         category: "plantas",
-        image: "/placeholder.svg?height=200&width=280"
+        image: "../assets/img/muda-majericao.jpg?height=200&width=280"
     },
     {
         id: 6,
@@ -52,7 +52,7 @@ const products = [
         price: "R$ 12,00",
         producer: "Sítio da Dona Maria",
         category: "temperos",
-        image: "/placeholder.svg?height=200&width=280"
+        image: "../assets/img/tempero.jpg?height=200&width=280"
     }
 ];
 
@@ -205,3 +205,7 @@ document.addEventListener('DOMContentLoaded', function() {
         observer.observe(el);
     });
 });
+
+function redirectToLogin(){
+    window.location.href = 'pages/login.html'
+}
