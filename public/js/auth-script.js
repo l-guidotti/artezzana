@@ -170,7 +170,7 @@ function handleLogin(event) {
             }));
             
             // Redirect to main page
-            window.location.href = 'index.html';
+            window.location.href = './dashboard.html';
         } else {
             alert('Por favor, verifique suas credenciais.');
         }

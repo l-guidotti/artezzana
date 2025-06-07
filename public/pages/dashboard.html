@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Artezzana</title>
+    <link rel="stylesheet" href="../css/dashboard-styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="logo" onclick="goToHome()">
+                <div class="logo-icon">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+                <h1>Artezzana</h1>
+            </div>
+            
+            <!-- Navigation for logged users -->
+            <nav class="nav" id="mainNav">
+                <!-- Will be populated by JavaScript based on user type -->
+            </nav>
+            
+            <!-- User Menu -->
+            <div class="user-menu">
+                <div class="user-info" onclick="toggleUserDropdown()">
+                    <div class="user-avatar" id="userAvatar">
+                        <span id="userInitials">U</span>
+                    </div>
+                    <span id="userName">Usuário</span>
+                    <svg class="dropdown-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polyline points="6,9 12,15 18,9"></polyline>
+                    </svg>
+                </div>
+                
+                <div class="user-dropdown hidden" id="userDropdown">
+                    <a href="#" onclick="showProfile()">Meu Perfil</a>
+                    <a href="#" onclick="showSettings()">Configurações</a>
+                    <a href="#" onclick="showHelp()">Ajuda</a>
+                    <hr>
+                    <a href="#" onclick="logout()">Sair</a>
+                </div>
+            </div>
+            
+            <button class="mobile-menu-btn" onclick="toggleMobileMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Welcome Section -->
+        <section class="welcome-section">
+            <div class="container">
+                <div class="welcome-content">
+                    <h2 id="welcomeTitle">Bem-vindo de volta!</h2>
+                    <p id="welcomeSubtitle">Vamos começar o dia explorando produtos locais</p>
+                </div>
+                <div class="quick-actions" id="quickActions">
+                    <!-- Will be populated by JavaScript -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Client Dashboard -->
+        <div id="clientDashboard" class="dashboard-content">
+            <!-- Search Section -->
+            <section class="search-section">
+                <div class="container">
+                    <div class="search-bar">
+                        <input type="text" placeholder="O que você está procurando hoje?" id="dashboardSearch">
+                        <button class="search-btn" onclick="performDashboardSearch()">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="11" cy="11" r="8"></circle>
+                                <path d="m21 21-4.35-4.35"></path>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Recommendations -->
+            <section class="recommendations">
+                <div class="container">
+                    <h3>Recomendados para você</h3>
+                    <div class="products-carousel" id="recommendedProducts">
+                        <!-- Products will be loaded here -->
+                    </div>
+                </div>
+            </section>
+
+            <!-- Categories Quick Access -->
+            <section class="quick-categories">
+                <div class="container">
+                    <h3>Categorias Populares</h3>
+                    <div class="categories-grid">
+                        <div class="category-quick-card" onclick="filterByCategory('frutas-verduras')">
+                            <div class="category-icon">🥕</div>
+                            <span>Frutas & Verduras</span>
+                        </div>
+                        <div class="category-quick-card" onclick="filterByCategory('artesanato')">
+                            <div class="category-icon">🎨</div>
+                            <span>Artesanato</span>
+                        </div>
+                        <div class="category-quick-card" onclick="filterByCategory('doces-conservas')">
+                            <div class="category-icon">🍯</div>
+                            <span>Doces & Conservas</span>
+                        </div>
+                        <div class="category-quick-card" onclick="filterByCategory('laticínios')">
+                            <div class="category-icon">🧀</div>
+                            <span>Laticínios</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Recent Orders -->
+            <section class="recent-orders">
+                <div class="container">
+                    <div class="section-header">
+                        <h3>Seus Pedidos Recentes</h3>
+                        <a href="#" onclick="showAllOrders()">Ver todos</a>
+                    </div>
+                    <div class="orders-list" id="recentOrdersList">
+                        <!-- Orders will be loaded here -->
+                    </div>
+                </div>
+            </section>
+
+            <!-- Nearby Producers -->
+            <section class="nearby-producers">
+                <div class="container">
+                    <h3>Produtores da sua região</h3>
+                    <div class="producers-grid" id="nearbyProducers">
+                        <!-- Producers will be loaded here -->
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- Producer Dashboard -->
+        <div id="producerDashboard" class="dashboard-content hidden">
+            <!-- Stats Overview -->
+            <section class="stats-overview">
+                <div class="container">
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <div class="stat-icon">📦</div>
+                            <div class="stat-content">
+                                <h4 id="totalProducts">0</h4>
+                                <p>Produtos Cadastrados</p>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon">🛒</div>
+                            <div class="stat-content">
+                                <h4 id="totalOrders">0</h4>
+                                <p>Pedidos Este Mês</p>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon">💰</div>
+                            <div class="stat-content">
+                                <h4 id="totalRevenue">R$ 0</h4>
+                                <p>Faturamento</p>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon">⭐</div>
+                            <div class="stat-content">
+                                <h4 id="averageRating">0.0</h4>
+                                <p>Avaliação Média</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Quick Actions for Producers -->
+            <section class="producer-actions">
+                <div class="container">
+                    <div class="actions-grid">
+                        <button class="action-card" onclick="addNewProduct()">
+                            <div class="action-icon">➕</div>
+                            <h4>Adicionar Produto</h4>
+                            <p>Cadastre um novo produto</p>
+                        </button>
+                        <button class="action-card" onclick="manageOrders()">
+                            <div class="action-icon">📋</div>
+                            <h4>Gerenciar Pedidos</h4>
+                            <p>Veja pedidos pendentes</p>
+                        </button>
+                        <button class="action-card" onclick="updateProfile()">
+                            <div class="action-icon">🏪</div>
+                            <h4>Atualizar Perfil</h4>
+                            <p>Edite informações do negócio</p>
+                        </button>
+                        <button class="action-card" onclick="viewAnalytics()">
+                            <div class="action-icon">📊</div>
+                            <h4>Relatórios</h4>
+                            <p>Veja estatísticas detalhadas</p>
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Recent Orders for Producer -->
+            <section class="producer-orders">
+                <div class="container">
+                    <div class="section-header">
+                        <h3>Pedidos Recentes</h3>
+                        <a href="#" onclick="showAllProducerOrders()">Ver todos</a>
+                    </div>
+                    <div class="orders-table" id="producerOrdersTable">
+                        <!-- Orders table will be loaded here -->
+                    </div>
+                </div>
+            </section>
+
+            <!-- Product Performance -->
+            <section class="product-performance">
+                <div class="container">
+                    <h3>Seus Produtos Mais Vendidos</h3>
+                    <div class="performance-list" id="topProducts">
+                        <!-- Top products will be loaded here -->
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Floating Action Button (Mobile) -->
+    <button class="fab" id="floatingActionBtn" onclick="handleFabClick()">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="12" y1="5" x2="12" y2="19"></line>
+            <line x1="5" y1="12" x2="19" y2="12"></line>
+        </svg>
+    </button>
+
+    <!-- Modals -->
+    <div class="modal hidden" id="profileModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Meu Perfil</h3>
+                <button class="close-btn" onclick="closeModal('profileModal')">&times;</button>
+            </div>
+            <div class="modal-body">
+                <p>Funcionalidade de perfil em desenvolvimento...</p>
+            </div>
+        </div>
+    </div>
+
+    <script src="../js/dashboard-script.js"></script>
+</body>
+</html>
