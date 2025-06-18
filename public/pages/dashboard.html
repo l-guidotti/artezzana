@@ -5,26 +5,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard - Artezzana</title>
     <link rel="stylesheet" href="../css/dashboard-styles.css">
+    <link rel="stylesheet" href="../css/global.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
     <!-- Header -->
     <header class="header">
         <div class="container">
-            <div class="logo" onclick="goToHome()">
+            <div class="logo">
                 <div class="logo-icon">
-                    <span></span>
-                    <span></span>
-                    <span></span>
+                    <img class="image-icon" src="../assets/logos/logo-png.png" alt="logo-artezzana">
                 </div>
                 <h1>Artezzana</h1>
             </div>
             
-            <!-- Navigation for logged users -->
-            <nav class="nav" id="mainNav">
-                <!-- Will be populated by JavaScript based on user type -->
+            <nav class="nav">
+                <a href="./dashboard.html" class="nav-link">Início</a>
+                <a href="#" class="nav-link">Produtos</a>
+                <a href="#" class="nav-link">Produtores</a>
+                <a href="./carrinho.html" class="nav-link active">Carrinho</a>
             </nav>
-            
+
             <!-- User Menu -->
             <div class="user-menu">
                 <div class="user-info" onclick="toggleUserDropdown()">
@@ -38,7 +39,7 @@
                 </div>
                 
                 <div class="user-dropdown hidden" id="userDropdown">
-                    <a href="#" onclick="showProfile()">Meu Perfil</a>
+                    <a href="./perfil.html" onclick="showProfile()">Meu Perfil</a>
                     <a href="#" onclick="showSettings()">Configurações</a>
                     <a href="#" onclick="showHelp()">Ajuda</a>
                     <hr>

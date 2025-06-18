@@ -88,6 +88,20 @@ body {
     color: #22c55e;
 }
 
+.nav-link.active {
+    color: #22c55e;
+}
+
+.nav-link.active::after {
+    content: '';
+    position: absolute;
+    bottom: -8px;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: #22c55e;
+}
+
 .mobile-menu-btn {
     display: none;
     flex-direction: column;

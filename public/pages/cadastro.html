@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Artezzana</title>
+    <link rel="stylesheet" href="../css/auth-styles.css">
+    <link rel="stylesheet" href="../css/global.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="logo" onclick="goToHome()">
+                <div class="logo-icon">
+                    <img class="image-icon" src="/public/assets/logos/logo-png.png" alt="logo-artezzana">
+                </div>
+                <h1>Artezzana</h1>
+            </div>
+            <nav class="nav">
+                <a href="../index.html" class="nav-link">Voltar ao Início</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Auth Container -->
+    <div class="auth-container">
+        <div class="auth-wrapper">
+
+            <!-- Register Form -->
+            <div class="auth-form" id="registerForm">
+                <div class="form-header">
+                    <h2>Criar conta</h2>
+                    <p>Junte-se à nossa comunidade</p>
+                </div>
+
+                <!-- User Type Selection -->
+                <div class="user-type-selection">
+                    <h3>Eu quero:</h3>
+                    <div class="user-type-options">
+                        <div class="user-type-card" onclick="selectUserType('cliente')" id="clienteCard">
+                            <div class="user-type-icon">🛒</div>
+                            <h4>Comprar Produtos</h4>
+                            <p>Encontrar produtos locais e artesanais</p>
+                        </div>
+                        <div class="user-type-card" onclick="selectUserType('produtor')" id="produtorCard">
+                            <div class="user-type-icon">🌱</div>
+                            <h4>Vender Produtos</h4>
+                            <p>Divulgar meus produtos e negócio</p>
+                        </div>
+                    </div>
+                </div>
+
+                <form id="registerFormElement" onsubmit="handleRegister(event)">
+                    <input type="hidden" id="userType" name="userType" required>
+
+                    <!-- Common Fields -->
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="firstName">Nome</label>
+                            <input type="text" id="firstName" name="firstName" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="lastName">Sobrenome</label>
+                            <input type="text" id="lastName" name="lastName" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="registerEmail">E-mail</label>
+                        <input type="email" id="registerEmail" name="email" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="phone">Telefone/WhatsApp</label>
+                        <input type="tel" id="phone" name="phone" placeholder="(11) 99999-9999" required>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="registerPassword">Senha</label>
+                            <div class="password-input">
+                                <input type="password" id="registerPassword" name="password" required minlength="6">
+                                <button type="button" class="toggle-password" onclick="togglePassword('registerPassword')">
+                                    👁️
+                                </button>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="confirmPassword">Confirmar Senha</label>
+                            <div class="password-input">
+                                <input type="password" id="confirmPassword" name="confirmPassword" required minlength="6">
+                                <button type="button" class="toggle-password" onclick="togglePassword('confirmPassword')">
+                                    👁️
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Location Fields -->
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="city">Cidade</label>
+                            <input type="text" id="city" name="city" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="state">Estado</label>
+                            <select id="state" name="state" required>
+                                <option value="">Selecione</option>
+                                <option value="AC">Acre</option>
+                                <option value="AL">Alagoas</option>
+                                <option value="AP">Amapá</option>
+                                <option value="AM">Amazonas</option>
+                                <option value="BA">Bahia</option>
+                                <option value="CE">Ceará</option>
+                                <option value="DF">Distrito Federal</option>
+                                <option value="ES">Espírito Santo</option>
+                                <option value="GO">Goiás</option>
+                                <option value="MA">Maranhão</option>
+                                <option value="MT">Mato Grosso</option>
+                                <option value="MS">Mato Grosso do Sul</option>
+                                <option value="MG">Minas Gerais</option>
+                                <option value="PA">Pará</option>
+                                <option value="PB">Paraíba</option>
+                                <option value="PR">Paraná</option>
+                                <option value="PE">Pernambuco</option>
+                                <option value="PI">Piauí</option>
+                                <option value="RJ">Rio de Janeiro</option>
+                                <option value="RN">Rio Grande do Norte</option>
+                                <option value="RS">Rio Grande do Sul</option>
+                                <option value="RO">Rondônia</option>
+                                <option value="RR">Roraima</option>
+                                <option value="SC">Santa Catarina</option>
+                                <option value="SP">São Paulo</option>
+                                <option value="SE">Sergipe</option>
+                                <option value="TO">Tocantins</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Producer Specific Fields -->
+                    <div id="producerFields" class="producer-fields hidden">
+                        <h3>Informações do Produtor</h3>
+                        
+                        <div class="form-group">
+                            <label for="businessName">Nome do Negócio/Propriedade</label>
+                            <input type="text" id="businessName" name="businessName">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="businessType">Tipo de Negócio</label>
+                            <select id="businessType" name="businessType">
+                                <option value="">Selecione</option>
+                                <option value="agricultura">Agricultura Familiar</option>
+                                <option value="artesanato">Artesanato</option>
+                                <option value="doces">Doces e Conservas</option>
+                                <option value="laticínios">Laticínios</option>
+                                <option value="plantas">Plantas e Mudas</option>
+                                <option value="temperos">Temperos e Ervas</option>
+                                <option value="outros">Outros</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="businessDescription">Descrição do seu negócio</label>
+                            <textarea id="businessDescription" name="businessDescription" rows="3" placeholder="Conte um pouco sobre seus produtos e sua história..."></textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="deliveryRadius">Raio de entrega (km)</label>
+                            <select id="deliveryRadius" name="deliveryRadius">
+                                <option value="">Selecione</option>
+                                <option value="5">Até 5 km</option>
+                                <option value="10">Até 10 km</option>
+                                <option value="20">Até 20 km</option>
+                                <option value="50">Até 50 km</option>
+                                <option value="100">Até 100 km</option>
+                                <option value="estado">Todo o estado</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="checkbox-container">
+                            <input type="checkbox" id="agreeTerms" required>
+                            <span class="checkmark"></span>
+                            Concordo com os <a href="#" target="_blank">Termos de Uso</a> e <a href="#" target="_blank">Política de Privacidade</a>
+                        </label>
+                    </div>
+
+                    <div class="form-group" id="marketingConsent">
+                        <label class="checkbox-container">
+                            <input type="checkbox" id="agreeMarketing">
+                            <span class="checkmark"></span>
+                            Quero receber novidades e ofertas por e-mail
+                        </label>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary">Criar Conta</button>
+                </form>
+
+                <div class="form-footer">
+                    <p>Já tem uma conta? <a href="/public/pages/login.html" onclick="showLogin()">Faça login</a></p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Success Message -->
+        <div class="success-message hidden" id="successMessage">
+            <div class="success-content">
+                <div class="success-icon">✅</div>
+                <h2>Conta criada com sucesso!</h2>
+                <p id="successText">Bem-vindo à Artezzana!</p>
+                <button class="btn btn-primary" onclick="goToHome()">Ir para o início</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="../js/auth-script.js"></script>
+</body>
+</html>
