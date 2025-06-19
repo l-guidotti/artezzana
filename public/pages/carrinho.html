@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,6 +9,7 @@
     <link rel="stylesheet" href="../css/global.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
+
 <body>
     <!-- Header -->
     <header class="header">
@@ -18,36 +20,35 @@
                 </div>
                 <h1>Artezzana</h1>
             </div>
-            
+
             <nav class="nav">
                 <a href="dashboard.html" class="nav-link">Início</a>
                 <a href="#" class="nav-link">Produtos</a>
                 <a href="#" class="nav-link">Produtores</a>
                 <a href="carrinho.html" class="nav-link active">Carrinho</a>
             </nav>
-            
+
+            <!-- User Menu -->
             <div class="user-menu">
                 <div class="user-info" onclick="toggleUserDropdown()">
                     <div class="user-avatar" id="userAvatar">
                         <span id="userInitials">U</span>
                     </div>
                     <span id="userName">Usuário</span>
+                    <svg class="dropdown-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2">
+                        <polyline points="6,9 12,15 18,9"></polyline>
+                    </svg>
                 </div>
-                
+
                 <div class="user-dropdown hidden" id="userDropdown">
-                    <a href="#" onclick="showProfile()">Meu Perfil</a>
+                    <a href="./perfil.html">Meu Perfil</a>
                     <a href="#" onclick="showSettings()">Configurações</a>
+                    <a href="#" onclick="showHelp()">Ajuda</a>
                     <hr>
                     <a href="#" onclick="logout()">Sair</a>
                 </div>
             </div>
-            
-            <button class="mobile-menu-btn" onclick="toggleMobileMenu()">
-                <span></span>
-                <span></span>
-                <span></span>
-            </button>
-        </div>
     </header>
 
     <!-- Main Content -->
@@ -56,7 +57,7 @@
         <section class="breadcrumb">
             <div class="container">
                 <nav class="breadcrumb-nav">
-                    <a href="dashboard.html">Início</a>
+                    <a href="./dashboard.html">Início</a>
                     <span>›</span>
                     <span>Carrinho</span>
                 </nav>
@@ -115,24 +116,24 @@
                         <div class="order-summary">
                             <div class="summary-card">
                                 <h3>Resumo do Pedido</h3>
-                                
+
                                 <div class="summary-line">
                                     <span>Subtotal</span>
                                     <span id="subtotal">R$ 0,00</span>
                                 </div>
-                                
+
                                 <div class="summary-line">
                                     <span>Taxa de entrega</span>
                                     <span id="deliveryFee">R$ 0,00</span>
                                 </div>
-                                
+
                                 <div class="summary-line discount hidden" id="discountLine">
                                     <span>Desconto</span>
                                     <span id="discountAmount">-R$ 0,00</span>
                                 </div>
-                                
+
                                 <hr>
-                                
+
                                 <div class="summary-total">
                                     <span>Total</span>
                                     <span id="totalAmount">R$ 0,00</span>
@@ -143,7 +144,8 @@
                                     <h4>Opções de Entrega</h4>
                                     <div class="delivery-option">
                                         <label class="radio-container">
-                                            <input type="radio" name="delivery" value="pickup" checked onchange="updateDeliveryFee()">
+                                            <input type="radio" name="delivery" value="pickup" checked
+                                                onchange="updateDeliveryFee()">
                                             <span class="radio-checkmark"></span>
                                             <div class="delivery-info">
                                                 <strong>Retirada no Local</strong>
@@ -153,7 +155,8 @@
                                     </div>
                                     <div class="delivery-option">
                                         <label class="radio-container">
-                                            <input type="radio" name="delivery" value="delivery" onchange="updateDeliveryFee()">
+                                            <input type="radio" name="delivery" value="delivery"
+                                                onchange="updateDeliveryFee()">
                                             <span class="radio-checkmark"></span>
                                             <div class="delivery-info">
                                                 <strong>Entrega em Casa</strong>
@@ -198,7 +201,8 @@
                                     </div>
                                 </div>
 
-                                <button class="btn btn-primary btn-checkout" onclick="proceedToCheckout()" id="checkoutBtn">
+                                <button class="btn btn-primary btn-checkout" onclick="proceedToCheckout()"
+                                    id="checkoutBtn">
                                     Finalizar Pedido
                                 </button>
 
@@ -272,4 +276,5 @@
 
     <script src="../js/carrinho-script.js"></script>
 </body>
+
 </html>

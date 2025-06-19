@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,6 +9,7 @@
     <link rel="stylesheet" href="../css/global.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
+
 <body>
     <!-- Header -->
     <header class="header">
@@ -18,12 +20,12 @@
                 </div>
                 <h1>Artezzana</h1>
             </div>
-            
+
             <nav class="nav">
-                <a href="./dashboard.html" class="nav-link">Início</a>
+                <a href="./dashboard.html" class="nav-link active">Início</a>
                 <a href="#" class="nav-link">Produtos</a>
                 <a href="#" class="nav-link">Produtores</a>
-                <a href="./carrinho.html" class="nav-link active">Carrinho</a>
+                <a href="./carrinho.html" class="nav-link">Carrinho</a>
             </nav>
 
             <!-- User Menu -->
@@ -33,25 +35,20 @@
                         <span id="userInitials">U</span>
                     </div>
                     <span id="userName">Usuário</span>
-                    <svg class="dropdown-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <svg class="dropdown-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2">
                         <polyline points="6,9 12,15 18,9"></polyline>
                     </svg>
                 </div>
-                
+
                 <div class="user-dropdown hidden" id="userDropdown">
-                    <a href="./perfil.html" onclick="showProfile()">Meu Perfil</a>
+                    <a href="./perfil.html">Meu Perfil</a>
                     <a href="#" onclick="showSettings()">Configurações</a>
                     <a href="#" onclick="showHelp()">Ajuda</a>
                     <hr>
                     <a href="#" onclick="logout()">Sair</a>
                 </div>
             </div>
-            
-            <button class="mobile-menu-btn" onclick="toggleMobileMenu()">
-                <span></span>
-                <span></span>
-                <span></span>
-            </button>
         </div>
     </header>
 
@@ -78,7 +75,8 @@
                     <div class="search-bar">
                         <input type="text" placeholder="O que você está procurando hoje?" id="dashboardSearch">
                         <button class="search-btn" onclick="performDashboardSearch()">
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
                                 <circle cx="11" cy="11" r="8"></circle>
                                 <path d="m21 21-4.35-4.35"></path>
                             </svg>
@@ -97,26 +95,60 @@
                 </div>
             </section>
 
-            <!-- Categories Quick Access -->
-            <section class="quick-categories">
+            <!-- Categories -->
+            <section class="categories" id="categories">
                 <div class="container">
-                    <h3>Categorias Populares</h3>
+                    <h3>Categorias</h3>
                     <div class="categories-grid">
-                        <div class="category-quick-card" onclick="filterByCategory('frutas-verduras')">
-                            <div class="category-icon">🥕</div>
-                            <span>Frutas & Verduras</span>
+                        <div class="category-card" onclick="redirectToLogin()">
+                            <div class="category-icon">
+                                <img class="images-categoy" src="../assets/images/frutas.jpg" alt="frutas e legumes">
+                            </div>
+                            <h4>Frutas & Verduras</h4>
+                            <p>Produtos frescos da horta</p>
                         </div>
-                        <div class="category-quick-card" onclick="filterByCategory('artesanato')">
-                            <div class="category-icon">🎨</div>
-                            <span>Artesanato</span>
+                        <div class="category-card" onclick="redirectToLogin()">
+                            <div class="category-icon">
+                                <img class="images-categoy" src="../assets/images/artesanatos.jpg"
+                                    alt="Frutas e legumes">
+                            </div>
+                            <h4>Artesanato</h4>
+                            <p>Peças únicas feitas à mão</p>
                         </div>
-                        <div class="category-quick-card" onclick="filterByCategory('doces-conservas')">
-                            <div class="category-icon">🍯</div>
-                            <span>Doces & Conservas</span>
+                        <div class="category-card" onclick="redirectToLogin()">
+                            <div class="category-icon">
+                                <img class="images-categoy" src="../assets/images/doces.jpg" alt="Doces">
+                            </div>
+                            <h4>Doces & Conservas</h4>
+                            <p>Sabores caseiros tradicionais</p>
                         </div>
-                        <div class="category-quick-card" onclick="filterByCategory('laticínios')">
-                            <div class="category-icon">🧀</div>
-                            <span>Laticínios</span>
+                        <div class="category-card" onclick="redirectToLogin()">
+                            <div class="category-icon">
+                                <img class="images-categoy" src="../assets/images/laticinios.jpg" alt="Laticinios">
+                            </div>
+                            <h4>Laticínios</h4>
+                            <p>Queijos e derivados artesanais</p>
+                        </div>
+                        <div class="category-card" onclick="redirectToLogin()">
+                            <div class="category-icon">
+                                <img class="images-categoy" src="../assets/images/mudas.jpg" alt="Plantas e mudas">
+                            </div>
+                            <h4>Plantas & Mudas</h4>
+                            <p>Verde para seu lar</p>
+                        </div>
+                        <div class="category-card" onclick="redirectToLogin()">
+                            <div class="category-icon">
+                                <img class="images-categoy" src="../assets/images/temperos.jpg" alt="Temperos">
+                            </div>
+                            <h4>Temperos & Ervas</h4>
+                            <p>Sabores naturais</p>
+                        </div>
+                        <div class="category-card" onclick="redirectToLogin()">
+                            <div class="category-icon">
+                                <img class="images-categoy" src="../assets/images/paes.jpg" alt="Pães">
+                            </div>
+                            <h4>Pães</h4>
+                            <p>Pães e deivados</p>
                         </div>
                     </div>
                 </div>
@@ -257,7 +289,51 @@
             </div>
         </div>
     </div>
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="logo">
+                        <div class="logo-icon">
+                            <img class="image-icon" src="./assets/logos/logo-png.png" alt="logo-artezzana">
+                        </div>
+                        <h4>Artezzana</h4>
+                    </div>
+                    <p>Conectando produtores locais com consumidores conscientes</p>
+                </div>
+                <div class="footer-section">
+                    <h5>Para Produtores</h5>
+                    <ul>
+                        <li><a href="./pages/login.html">Cadastre-se</a></li>
+                        <li><a href="#">Como Vender</a></li>
+                        <li><a href="#">Suporte</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h5>Para Compradores</h5>
+                    <ul>
+                        <li><a href="#">Como Comprar</a></li>
+                        <li><a href="#">Entregas</a></li>
+                        <li><a href="#">Dúvidas</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h5>Contato</h5>
+                    <ul>
+                        <li>📧 lucasguidottipro@gmail.com</li>
+                        <li>📱 (53) 98136-4363</li>
+                        <li>📍 Pelotas - RS</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Artezzana. Todos os direitos reservados.</p>
+            </div>
+        </div>
+    </footer>
 
     <script src="../js/dashboard-script.js"></script>
 </body>
+
 </html>
