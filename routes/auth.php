@@ -1,3 +1,4 @@
+<?php
 require_once __DIR__ . '/../app/controllers/AuthController.php';
 require_once __DIR__ . '/../config/database.php';
 
@@ -9,3 +10,4 @@ if ($url === '/login' && $method === 'POST') {
 elseif ($url === '/logout') {
     $auth->logout();
 }
+?>

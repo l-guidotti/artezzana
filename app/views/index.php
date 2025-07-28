@@ -69,49 +69,49 @@
             <div class="categories-grid">
                 <div class="category-card" onclick="redirectToLogin()">
                     <div class="category-icon">
-                        <img class="images-categoy" src="./assets/images/frutas.jpg" alt="frutas e legumes">
+                        <img class="images-categoy" src="../../public/assets/images/frutas.jpg" alt="frutas e legumes">
                     </div>
                     <h4>Frutas & Verduras</h4>
                     <p>Produtos frescos da horta</p>
                 </div>
                 <div class="category-card" onclick="redirectToLogin()">
                     <div class="category-icon">
-                        <img class="images-categoy" src="./assets/images/artesanatos.jpg" alt="Frutas e legumes">
+                        <img class="images-categoy" src="../../public/assets/images/artesanatos.jpg" alt="Frutas e legumes">
                     </div>
                     <h4>Artesanato</h4>
                     <p>Peças únicas feitas à mão</p>
                 </div>
                 <div class="category-card" onclick="redirectToLogin()">
                     <div class="category-icon">
-                        <img class="images-categoy" src="./assets/images/doces.jpg" alt="Doces">
+                        <img class="images-categoy" src="../../public/assets/images/doces.jpg" alt="Doces">
                     </div>
                     <h4>Doces & Conservas</h4>
                     <p>Sabores caseiros tradicionais</p>
                 </div>
                 <div class="category-card" onclick="redirectToLogin()">
                     <div class="category-icon">
-                        <img class="images-categoy" src="./assets/images/laticinios.jpg" alt="Laticinios">
+                        <img class="images-categoy" src="../../public/assets/images/laticinios.jpg" alt="Laticinios">
                     </div>
                     <h4>Laticínios</h4>
                     <p>Queijos e derivados artesanais</p>
                 </div>
                 <div class="category-card" onclick="redirectToLogin()">
                     <div class="category-icon">
-                        <img class="images-categoy" src="./assets/images/mudas.jpg" alt="Plantas e mudas">
+                        <img class="images-categoy" src="../../public/assets/images/mudas.jpg" alt="Plantas e mudas">
                     </div>
                     <h4>Plantas & Mudas</h4>
                     <p>Verde para seu lar</p>
                 </div>
                 <div class="category-card" onclick="redirectToLogin()">
                     <div class="category-icon">
-                        <img class="images-categoy" src="./assets/images/temperos.jpg" alt="Temperos">
+                        <img class="images-categoy" src="../../public/assets/images/temperos.jpg" alt="Temperos">
                     </div>
                     <h4>Temperos & Ervas</h4>
                     <p>Sabores naturais</p>
                 </div>
                 <div class="category-card" onclick="redirectToLogin()">
                     <div class="category-icon">
-                        <img class="images-categoy" src="./assets/images/paes.jpg" alt="Pães">
+                        <img class="images-categoy" src="../../public/assets/images/paes.jpg" alt="Pães">
                     </div>
                     <h4>Pães</h4>
                     <p>Pães e deivados</p>
@@ -165,19 +165,19 @@
             <h3>Nossos Produtores</h3>
             <div class="producers-grid">
                 <div class="producer-card">
-                    <img src="./assets/images/dona-maria.jpeg" alt="Sítio da Dona Maria" />
+                    <img src="../../public/assets/images/dona-maria.jpeg" alt="Sítio da Dona Maria" />
                     <h4>Sítio da Dona Maria</h4>
                     <p>Especializada em hortaliças orgânicas e temperos frescos</p>
                     <span class="location">📍 Zona Rural - São Paulo</span>
                 </div>
                 <div class="producer-card">
-                    <img src="./assets/images/joao-artesao.jpeg" alt="Artesanato do João" />
+                    <img src="../../public/assets/images/joao-artesao.jpeg" alt="Artesanato do João" />
                     <h4>Artesanato do João</h4>
                     <p>Peças em madeira e cerâmica feitas com técnicas tradicionais</p>
                     <span class="location">📍 Pelotas - Rio Grande do Sul</span>
                 </div>
                 <div class="producer-card">
-                    <img src="./assets/images/laticinio-artesanal.jpeg" alt="Fazenda Esperança" />
+                    <img src="../../public/assets/images/laticinio-artesanal.jpeg" alt="Fazenda Esperança" />
                     <h4>Fazenda Esperança</h4>
                     <p>Laticínios artesanais e produtos da agricultura familiar</p>
                     <span class="location">📍 Interior - Rio Grande do Sul</span>
@@ -193,7 +193,7 @@
                 <div class="footer-section">
                     <div class="logo">
                         <div class="logo-icon">
-                            <img class="image-icon" src="./assets/logos/logo-png.png" alt="logo-artezzana">
+                            <img class="image-icon" src="../../public/assets/logos/logo-png.png" alt="logo-artezzana">
                         </div>
                         <h4>Artezzana</h4>
                     </div>
@@ -202,7 +202,7 @@
                 <div class="footer-section">
                     <h5>Para Produtores</h5>
                     <ul>
-                        <li><a href="./pages/login.html">Cadastre-se</a></li>
+                        <li><a href="./auth/cadastro.php">Cadastre-se</a></li>
                         <li><a href="#">Como Vender</a></li>
                         <li><a href="#">Suporte</a></li>
                     </ul>

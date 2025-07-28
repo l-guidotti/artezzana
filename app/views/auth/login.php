@@ -1,8 +1,10 @@
-<?php session_start(); ?>
-<?php if (isset($_SESSION["msg"])): ?>
-    <p><?= $_SESSION["msg"] ?></p>
-    <?php unset($_SESSION["msg"]); ?>
-<?php endif; ?>
+<?php
+session_start();
+
+    $erroLogin = $_SESSION['msg'] ?? null;
+    $loginEmail = $_SESSION['login_form_data']['email'] ?? '';
+    unset($_SESSION['msg'], $_SESSION['login_form_data']);
+?>
 
 <!DOCTYPE html>
 <html lang="pt-BR">
@@ -10,8 +12,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login - Artezzana</title>
-    <link rel="stylesheet" href="../css/auth-styles.css">
-    <link rel="stylesheet" href="../css/global.css">
+    <link rel="stylesheet" href="../../../public/css/auth-styles.css">
+    <link rel="stylesheet" href="../../../public/css/global.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
@@ -20,7 +22,7 @@
         <div class="container">
             <div class="logo" onclick="goToHome()">
                 <div class="logo-icon">
-                    <img class="image-icon" src="../assets/logos/logo-png.png" alt="logo-artezzana">
+                    <img class="image-icon" src="../../../public/assets/logos/logo-png.png" alt="logo-artezzana">
                 </div>
                 <h1>Artezzana</h1>
             </div>
@@ -40,7 +42,7 @@
                     <p>Entre na sua conta para continuar</p>
                 </div>
 
-                <form id="loginFormElement" method="POST" action="../../app/controllers/LoginController.php">
+                <form id="loginFormElement" method="POST" action="../../controllers/LoginController.php">
                     <div class="form-group">
                         <label for="loginEmail">E-mail</label>
                         <input type="email" id="loginEmail" name="email" required>
