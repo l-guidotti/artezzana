@@ -32,7 +32,7 @@
                     <a href="#" onclick="showSettings()">Configurações</a>
                     <a href="#" onclick="showHelp()">Ajuda</a>
                     <hr>
-                    <a href="../../app/controllers/LoginController.php?action=logout">Sair</a>
+                    <a href="../../controllers/LoginController.php?action=logout">Sair</a>
 
                 </div>
             </div>

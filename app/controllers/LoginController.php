@@ -64,7 +64,6 @@ class AuthController {
     }
 }
 
-// Execução automática ao receber POST
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
     require_once __DIR__ . '/../../config/database.php'; // conexão PDO
     $email = $_POST['email'] ?? '';
@@ -72,4 +71,10 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
     $controller = new AuthController($pdo);
     $controller->login($email, $senha);
+}
+
+if ($_SERVER["REQUEST_METHOD"] === "GET" && isset($_GET['action']) && $_GET['action'] === 'logout') {
+    require_once __DIR__ . '/../../config/database.php'; // conexão PDO
+    $controller = new AuthController($pdo);
+    $controller->logout();
 }
