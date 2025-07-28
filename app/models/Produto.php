@@ -23,13 +23,13 @@ class Produto {
         return $stmt->execute();
     }
 
-    public function listarPorProdutor($produtor_id) {
-        $sql = "SELECT * FROM produtos WHERE produtor_id = :produtor_id ORDER BY id DESC";
-        $stmt = $this->pdo->prepare($sql);
-        $stmt->bindValue(':produtor_id', $id);
-        $stmt->execute();
-        return $stmt->fetchAll(PDO::FETCH_ASSOC);
-    }
+   public function listarPorProdutor($produtor_id) {
+    $sql = "SELECT * FROM produtos WHERE produtor_id = :id ORDER BY id DESC";
+    $stmt = $this->pdo->prepare($sql);
+    $stmt->bindValue(':id', $produtor_id);
+    $stmt->execute();
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+}
 
     public function listarTodos() {
         $sql = "SELECT * FROM produtos";

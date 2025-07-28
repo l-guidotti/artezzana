@@ -23,10 +23,6 @@ $mensagemSucesso = $_SESSION['msg'] ?? '';
 
 unset($_SESSION['erro_produto'], $_SESSION['msg']);
 
-echo '<pre>';
-var_dump($produtos);
-echo '</pre>';
-
 ?>
 
 <!DOCTYPE html>
