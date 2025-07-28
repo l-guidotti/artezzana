@@ -1,4 +1,8 @@
 <?php
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+
 require_once __DIR__ . '/../models/Usuario.php';
 
 class AuthController {
@@ -33,11 +37,10 @@ class AuthController {
                 $_SESSION["usuario_nome"] = $usuario['nome'];
                 $_SESSION["tipo_usuario"] = $usuario['tipo_usuario'];
 
-                // Redirecionamento com base no tipo de usuário
                 if ($_SESSION["tipo_usuario"] == "comprador") {
                     header("Location: ../../public/pages/dashboard_comprador.php");
                 } else {
-                    header("Location: ../../public/pages/dashboard_produtor.php");
+                    header("Location: ../views/usuario/dashboard_produtor.php");
                 }
                 exit();
             } else {
@@ -59,4 +62,14 @@ class AuthController {
         header("Location: ../../public/pages/login.php");
         exit();
     }
+}
+
+// Execução automática ao receber POST
+if ($_SERVER["REQUEST_METHOD"] === "POST") {
+    require_once __DIR__ . '/../../config/database.php'; // conexão PDO
+    $email = $_POST['email'] ?? '';
+    $senha = $_POST['senha'] ?? '';
+
+    $controller = new AuthController($pdo);
+    $controller->login($email, $senha);
 }

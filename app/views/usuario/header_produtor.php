@@ -10,7 +10,7 @@
 
             <nav class="nav">
                 <a href="./dashboard_produtor.php" class="nav-link active">Início</a>
-                <a href="./produtos.php" class="nav-link">Produtos</a>
+                <a href="./produto.php" class="nav-link">Produtos</a>
                 <a href="#" class="nav-link">Estatísticas</a>
                 <a href="#" class="nav-link">Pedidos</a>
             </nav>
