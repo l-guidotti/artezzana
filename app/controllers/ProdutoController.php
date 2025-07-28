@@ -7,6 +7,7 @@ class ProdutoController {
 
     public function __construct($pdo) {
         $this->pdo = $pdo;
+        $this->produtoModel = new Produto($pdo);
         session_start();
     }
 
@@ -68,5 +69,46 @@ class ProdutoController {
             header("Location: ../usuario/produto.php");
             exit();
         }
+    }
+
+    public function editar($id) {
+        $nome = $_POST['nome'];
+        $descricao = $_POST['descricao'];
+        $preco = $_POST['preco'];
+        $quantidade = $_POST['quantidade'];
+
+        $this->produtoModel->editarProduto($id, $nome, $descricao, $preco, $quantidade);
+        
+        header("Location: /artezzana/app/views/usuario/produto.php");
+        exit();
+    }
+
+    public function excluir($id) {
+        $this->produtoModel->excluirProduto($id);
+
+        header("Location: /artezzana/app/views/usuario/produto.php");
+        exit();
+    }
+}
+
+if (isset($_GET['action'])) {
+    require_once __DIR__ . '/../models/Produto.php';
+    require_once __DIR__ . '/../../config/database.php';
+
+    $pdo = Database::conectar();
+    $produtoModel = new Produto($pdo);
+    $controller = new ProdutoController($pdo);
+
+    $action = $_GET['action'];
+
+    switch ($action) {
+        case 'excluir':
+            if (isset($_GET['id'])) {
+                $id = $_GET['id'];
+                $controller->excluir($id);
+            } else {
+                echo "ID do produto não informado!";
+            }
+            break;
     }
 }

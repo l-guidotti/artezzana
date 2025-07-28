@@ -29,12 +29,30 @@ class Produto {
     $stmt->bindValue(':id', $produtor_id);
     $stmt->execute();
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
-}
+    }
 
     public function listarTodos() {
         $sql = "SELECT * FROM produtos";
         $stmt = $this->pdo->prepare($sql);
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    public function editarProduto($id, $nome, $descricao, $preco, $quantidade) {
+        $sql = "UPDATE produtos SET nome = :nome, descricao = :descricao, preco = :preco, quantidade = :quantidade WHERE id = :id";
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->bindValue(':nome', $nome);
+        $stmt->bindValue(':descricao', $descricao);
+        $stmt->bindValue(':preco', $preco);
+        $stmt->bindValue(':quantidade', $quantidade);
+        $stmt->bindValue(':id', $id);
+        $stmt->execute();
+    }
+
+    public function excluirProduto($id) {
+        $sql = "DELETE FROM produtos WHERE id = :id";
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->bindValue(':id', $id);
+        $stmt->execute();
     }
 }

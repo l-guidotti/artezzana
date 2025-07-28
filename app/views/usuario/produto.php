@@ -92,9 +92,8 @@ unset($_SESSION['erro_produto'], $_SESSION['msg']);
                                     </span>
                                 </td>
                                 <td class="actions">
-                                    <a href="./editar_produto.php?id=<?= $produto['id'] ?>">Editar</a>
-                                    <a href="?action=excluir&id=<?= $produto['id'] ?>" 
-                                       onclick="return confirm('Tem certeza que deseja excluir este produto?');" class="delete-btn">Excluir</a>
+                                    <a href="./edita_produto.php?id=<?= $produto['id'] ?>">Editar</a>
+                                    <a href="../../controllers/ProdutoController.php?action=excluir&id=<?= $produto['id'] ?>" onclick="return confirm('Tem certeza que deseja excluir este produto?')">Excluir</a>
                                 </td>
                             </tr>
                         <?php endforeach; ?>
