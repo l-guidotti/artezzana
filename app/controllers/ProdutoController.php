@@ -19,7 +19,16 @@ class ProdutoController {
             $unidade = $_POST["unidadeMedida"] ?? '';
             $estoque = $_POST["estoque"] ?? 0;
             $categoria = $_POST["categoria"] ?? '';
-            $imagem = ''; 
+            if ($_FILES['imagem']['error'] === UPLOAD_ERR_OK) {
+                $nomeImagem = uniqid() . '_' . $_FILES['imagem']['name'];
+                // Caminho físico absoluto no servidor (onde salvar o arquivo)
+                $caminhoFisico = __DIR__ . '/../../public/imagens_produtos/' . $nomeImagem;
+                $caminhoImagem = '/artezzana/public/imagens_produtos/' . $nomeImagem;
+                move_uploaded_file($_FILES['imagem']['tmp_name'], $caminhoFisico);
+
+            } else {
+                $caminhoImagem = '../../../public/imagens_produtos/imagem_padrao.jpeg';
+            }
             $produtor_id = $_SESSION["usuario_id"] ?? null;
 
             if (!$produtor_id) {
@@ -28,26 +37,8 @@ class ProdutoController {
                 exit();
             }
 
-            // Tratar imagem
-            if (isset($_FILES["imagem"]) && $_FILES["imagem"]["error"] === UPLOAD_ERR_OK) {
-                $ext = pathinfo($_FILES["imagem"]["name"], PATHINFO_EXTENSION);
-                $nomeArquivo = uniqid() . "." . $ext;
-                $caminho = __DIR__ . '/../../public/imagens_produtos/' . $nomeArquivo;
-                move_uploaded_file($_FILES["imagem"]["tmp_name"], $caminho);
-                $imagem = $nomeArquivo;
-            }
-
             $permitidos = ['jpg', 'jpeg', 'png', 'gif'];
             $tamanhoMaximo = 2 * 1024 * 1024; // 2MB
-
-            if (in_array($ext, $permitidos) && $_FILES["imagem"]["size"] <= $tamanhoMaximo) {
-                move_uploaded_file($_FILES["imagem"]["tmp_name"], $caminho);
-                $imagem = $nomeArquivo;
-            } else {
-                $_SESSION['erro_produto'] = "Arquivo inválido.";
-                header("Location: ../usuario/produto.php");
-                exit();
-            }
 
             $produtoModel = new Produto($this->pdo);
             $produtoModel->criar([
@@ -57,7 +48,7 @@ class ProdutoController {
                 'unidadeMedida' => $unidade,
                 'estoque' => $estoque,
                 'categoria' => $categoria,
-                'imagem' => $imagem,
+                'imagem' => $caminhoImagem,
                 'produtor_id' => $produtor_id
             ]);
 
