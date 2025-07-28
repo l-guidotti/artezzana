@@ -1,3 +1,9 @@
+<?php session_start(); ?>
+<?php if (isset($_SESSION["msg"])): ?>
+    <p><?= $_SESSION["msg"] ?></p>
+    <?php unset($_SESSION["msg"]); ?>
+<?php endif; ?>
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
