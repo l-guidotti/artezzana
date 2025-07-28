@@ -157,7 +157,7 @@ $iniciais_usuario = $dadosUsuario['iniciais'];
 
         // Função para simular cliques em botões (no futuro, redirecionaria para páginas reais)
         function addNewProduct() {
-            window.location.href = './cadastrar_produto.php';
+            window.location.href = './cadastra_produto.php';
         }
         function manageOrders() {
             window.location.href = './gerenciar_pedidos.php';

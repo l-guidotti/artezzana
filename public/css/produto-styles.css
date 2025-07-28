@@ -1,0 +1,122 @@
+.products-management { 
+    max-width: 1000px; 
+    margin: 2rem auto; 
+    padding: 2rem;
+    background: #fff; 
+    border-radius: 12px; 
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08); 
+}
+
+.products-management h2 { 
+    font-size: 2rem; 
+    color: #1f2937; 
+    margin-bottom: 1.5rem; 
+    text-align: center; 
+}
+
+.products-management .section-header { 
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center; 
+    margin-bottom: 1.5rem; 
+}
+
+.products-management .section-header h3 { 
+    font-size: 1.5rem; 
+    margin: 0; 
+}
+        
+.products-management .btn-add-product { 
+    background-color: #22c55e; 
+    color: white; 
+    padding: 0.75rem 1.5rem; 
+    border-radius: 8px; 
+    text-decoration: none; 
+    font-weight: 500; 
+    transition: background-color 0.3s; 
+}
+        
+.products-management .btn-add-product:hover { 
+    background-color: #16a34a; 
+}
+        
+.product-table { 
+    width: 100%; 
+    border-collapse: collapse; 
+    margin-top: 1.5rem; 
+}
+        
+.product-table th, .product-table td { 
+    text-align: left; 
+    padding: 12px 15px; 
+    border-bottom: 1px solid #e5e7eb; 
+}
+        
+.product-table th { 
+    background-color: #f9fafb; 
+    color: #374151; 
+    font-weight: 600; 
+    text-transform: uppercase; 
+    font-size: 0.85rem; 
+}
+        
+.product-table tbody tr:hover { 
+    background-color: #f3f4f6; 
+}
+        
+.product-table td img { 
+    width: 50px; 
+    height: 50px; 
+    object-fit: cover; 
+    border-radius: 4px; 
+}
+        
+.product-table .actions a { 
+    color: #007bff; 
+    text-decoration: none; 
+    margin-right: 10px; 
+}
+        
+.product-table .actions a:hover { 
+    text-decoration: underline; 
+}
+        
+.product-table .actions .delete-btn { 
+    color: #dc3545; 
+}
+        
+.product-status .active { 
+    color: #22c55e; 
+    font-weight: 600; 
+}
+        
+.product-status .inactive { 
+    color: #9ca3af; 
+}
+        
+.no-products-message { 
+    text-align: center; 
+    padding: 2rem; 
+    color: #6b7280; 
+    font-size: 1.1rem; 
+}
+        
+.message { 
+    padding: 10px; 
+    margin-bottom: 15px; 
+    border-radius: 5px; 
+    text-align: center; 
+    font-weight: bold; 
+}
+        
+.error-message { 
+    background-color: #fdd; 
+    color: #d00; 
+    border: 1px solid #d00; 
+}
+        
+.success-message-php { 
+    background-color: #d1fae5; 
+    color: #065f46; 
+    border: 1px solid #065f46; 
+}
