@@ -120,3 +120,96 @@
     color: #065f46; 
     border: 1px solid #065f46; 
 }
+
+/* Estilos similares ao cadastrar_produto.php */
+.form-cadastro-produto {
+    max-width: 700px;
+    margin: 2rem auto;
+    padding: 2rem;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+.form-cadastro-produto .form-header {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+.form-cadastro-produto .form-header h2 {
+    font-size: 2rem;
+    color: #1f2937;
+    margin-bottom: 0.5rem;
+}
+.form-cadastro-produto .form-header p {
+    color: #6b7280;
+}
+.form-cadastro-produto .form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+    color: #374151;
+}
+.form-cadastro-produto .form-group input[type="text"],
+.form-cadastro-produto .form-group input[type="number"],
+.form-cadastro-produto .form-group textarea,
+.form-cadastro-produto .form-group select {
+    width: 100%;
+    padding: 0.8rem;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    font-size: 1rem;
+    margin-bottom: 1rem;
+}
+.form-cadastro-produto .form-group textarea {
+    resize: vertical;
+    min-height: 80px;
+}
+.form-cadastro-produto .form-row {
+    display: flex;
+    gap: 1rem;
+}
+.form-cadastro-produto .form-row .form-group {
+    flex: 1;
+}
+.form-cadastro-produto button[type="submit"] {
+    width: 100%;
+    padding: 1rem;
+    background-color: #22c55e;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+.form-cadastro-produto button[type="submit"]:hover {
+    background-color: #16a34a;
+}
+.message {
+    padding: 10px;
+    margin-bottom: 15px;
+    border-radius: 5px;
+    text-align: center;
+    font-weight: bold;
+}
+.error-message {
+    background-color: #fdd;
+    color: #d00;
+    border: 1px solid #d00;
+}
+.success-message-php {
+    background-color: #d1fae5;
+    color: #065f46;
+    border: 1px solid #065f46;
+}
+
+.form-group.checkbox-container-custom {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+.form-group.checkbox-container-custom input[type="checkbox"] {
+    width: auto;
+    margin-right: 10px;
+    margin-bottom: 0;
+}

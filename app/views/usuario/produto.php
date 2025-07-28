@@ -1,15 +1,34 @@
 <?php
 require_once __DIR__ . '/../../../app/helpers/auth.php';
+require_once __DIR__ . '/../../../app/models/Produto.php';
+require_once __DIR__ . '/../../../config/database.php';
+
+$pdo = Database::conectar();
 
 verificarLogin();
 protegerRotaProdutor();
+
+$produtorId = $_SESSION['usuario_id'];
+$produtoModel = new Produto($pdo);
+$produtos = $produtoModel->listarPorProdutor($produtorId);
+
 
 $dadosUsuario = pegarDadosUsuario();
 $usuario_nome = $dadosUsuario['nome'];
 $tipo_usuario_logado = $dadosUsuario['tipo'];
 $iniciais_usuario = $dadosUsuario['iniciais'];
 
+$mensagemErro = $_SESSION['erro_produto'] ?? '';
+$mensagemSucesso = $_SESSION['msg'] ?? '';
+
+unset($_SESSION['erro_produto'], $_SESSION['msg']);
+
+echo '<pre>';
+var_dump($produtos);
+echo '</pre>';
+
 ?>
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>

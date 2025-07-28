@@ -1,4 +1,5 @@
 <?php
+require_once __DIR__ . '/../../config/database.php';
 
 class Produto {
     private $pdo;
@@ -23,12 +24,17 @@ class Produto {
     }
 
     public function listarPorProdutor($produtor_id) {
-        $sql = "SELECT * FROM produtos WHERE produtor_id = :id ORDER BY id DESC";
+        $sql = "SELECT * FROM produtos WHERE produtor_id = :produtor_id ORDER BY id DESC";
         $stmt = $this->pdo->prepare($sql);
-        $stmt->bindValue(':id', $produtor_id);
+        $stmt->bindValue(':produtor_id', $id);
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    // métodos editar(), buscarPorId() e excluir() você pode adicionar depois
+    public function listarTodos() {
+        $sql = "SELECT * FROM produtos";
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
 }
