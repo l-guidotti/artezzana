@@ -38,6 +38,15 @@ class Produto {
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
+    public function buscarPorId($id) {
+        $sql = "SELECT * FROM produtos WHERE id = :id";
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->bindValue(':id', $id, PDO::PARAM_INT);
+        $stmt->execute();
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
+
+
     public function editarProduto($id, $nome, $descricao, $preco, $quantidade) {
         $sql = "UPDATE produtos SET nome = :nome, descricao = :descricao, preco = :preco, quantidade = :quantidade WHERE id = :id";
         $stmt = $this->pdo->prepare($sql);
@@ -49,10 +58,35 @@ class Produto {
         $stmt->execute();
     }
 
+    public function editarProdutoCompleto($id, $nome, $descricao, $preco, $unidadeMedida, $quantidadeEstoque, $categoria, $ativo) {
+        $sql = "UPDATE produtos SET 
+                    nome = :nome, 
+                    descricao = :descricao, 
+                    preco = :preco, 
+                    unidade_medida = :unidade_medida,
+                    quantidade_estoque = :quantidade_estoque,
+                    categoria = :categoria,
+                    ativo = :ativo
+                WHERE id = :id";
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->bindValue(':nome', $nome);
+        $stmt->bindValue(':descricao', $descricao);
+        $stmt->bindValue(':preco', $preco);
+        $stmt->bindValue(':unidade_medida', $unidadeMedida);
+        $stmt->bindValue(':quantidade_estoque', $quantidadeEstoque);
+        $stmt->bindValue(':categoria', $categoria);
+        $stmt->bindValue(':ativo', $ativo, PDO::PARAM_BOOL);
+        $stmt->bindValue(':id', $id);
+        $stmt->execute();
+    }
+
+
     public function excluirProduto($id) {
         $sql = "DELETE FROM produtos WHERE id = :id";
         $stmt = $this->pdo->prepare($sql);
         $stmt->bindValue(':id', $id);
         $stmt->execute();
     }
+
+
 }

@@ -10,13 +10,55 @@ protegerRotaProdutor();
 
 $produtorId = $_SESSION['usuario_id'];
 $produtoModel = new Produto($pdo);
-$produtos = $produtoModel->listarPorProdutor($produtorId);
+$produtoId = $_GET['id'] ?? null;
+
+if (!$produtoId) {
+    $_SESSION['erro_produto'] = 'ID do produto não informado.';
+    header('Location: produto.php');
+    exit;
+}
+
+$produto = $produtoModel->buscarPorId($produtoId);
+
+if (!$produto || $produto['produtor_id'] != $produtorId) {
+    $_SESSION['erro_produto'] = 'Produto não encontrado ou acesso não autorizado.';
+    header('Location: produto.php');
+    exit;
+}
 
 
 $dadosUsuario = pegarDadosUsuario();
 $usuario_nome = $dadosUsuario['nome'];
 $tipo_usuario_logado = $dadosUsuario['tipo'];
 $iniciais_usuario = $dadosUsuario['iniciais'];
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    // Receber dados do formulário
+    $nome = $_POST['nome'] ?? '';
+    $descricao = $_POST['descricao'] ?? '';
+    $preco = $_POST['preco'] ?? '';
+    $unidadeMedida = $_POST['unidadeMedida'] ?? '';
+    $quantidadeEstoque = $_POST['quantidadeEstoque'] ?? 0;
+    $categoria = $_POST['categoria'] ?? '';
+    $ativo = isset($_POST['ativo']) ? true : false;
+    $produtoId = $_GET['id'] ?? null;
+
+    // Verifica se tem produtoId
+    if (!$produtoId) {
+        $_SESSION['erro_produto'] = 'ID do produto não informado.';
+        header('Location: produto.php');
+        exit;
+    }
+
+    // Atualizar no banco (usando seu model)
+    $produtoModel = new Produto($pdo);
+    $produtoModel->editarProdutoCompleto($produtoId, $nome, $descricao, $preco, $unidadeMedida, $quantidadeEstoque, $categoria, $ativo);
+
+    $_SESSION['msg'] = 'Produto atualizado com sucesso!';
+    header('Location: produto.php');  // Redireciona para a lista ou outra página
+    exit;
+}
+
 
 $mensagemErro = $_SESSION['erro_produto'] ?? '';
 $mensagemSucesso = $_SESSION['msg'] ?? '';
@@ -57,7 +99,7 @@ unset($_SESSION['erro_produto'], $_SESSION['msg']);
                 </div>
             <?php endif; ?>
 
-            <form action="editar_produto.php?id=<?= $produtoId ?>" method="POST">
+            <form action="edita_produto.php?id=<?= $produtoId ?>" method="POST">
                 <div class="form-group">
                     <label for="nome">Nome do Produto</label>
                     <input type="text" id="nome" name="nome" required value="<?= htmlspecialchars($produto['nome'] ?? '') ?>">

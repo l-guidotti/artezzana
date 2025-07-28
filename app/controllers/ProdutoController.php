@@ -70,7 +70,7 @@ class ProdutoController {
 
         $this->produtoModel->editarProduto($id, $nome, $descricao, $preco, $quantidade);
         
-        header("Location: /artezzana/app/views/usuario/produto.php");
+        header("Location: ../usuario/produto.php");
         exit();
     }
 
