@@ -14,13 +14,13 @@
         <div class="container">
             <div class="logo">
                 <div class="logo-icon">
-                    <img class="image-icon" src="./assets/logos/logo-png.png" alt="logo-artezzana">
+                    <img class="image-icon" src="../../public/assets/logos/logo-png.png" alt="logo-artezzana">
                 </div>
                 <h1>Artezzana</h1>
             </div>
              <nav class="nav">
-                <a href="./pages/login.php" class="nav-link">Login</a>
-                <a href="./pages/cadastro.php" class="nav-link">Cadastro</a>
+                <a href="./auth/login.php" class="nav-link">Login</a>
+                <a href="./auth/cadastro.php" class="nav-link">Cadastro</a>
             </nav>
             <button class="mobile-menu-btn" onclick="toggleMobileMenu()">
                 <span></span>
@@ -42,7 +42,7 @@
                 </div>
             </div>
             <div class="hero-image">
-                <img src="./assets/images/home-page.jpg" alt="Produtores locais" />
+                <img src="../../public/assets/images/home-page.jpg" alt="Produtores locais" />
             </div>
         </div>
     </section>
