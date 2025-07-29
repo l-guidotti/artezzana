@@ -5,7 +5,7 @@
                 <div class="footer-section">
                     <div class="logo">
                         <div class="logo-icon">
-                            <img class="image-icon" src="../assets/logos/logo-png.png" alt="logo-artezzana">
+                            <img class="image-icon" src="../../../public/assets/logos/logo-png.png" alt="logo-artezzana">
                         </div>
                         <h4>Artezzana</h4>
                     </div>

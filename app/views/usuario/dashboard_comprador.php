@@ -150,31 +150,31 @@ $iniciais_usuario = $dadosUsuario['iniciais'];
                     <h3>Categorias</h3>
                     <div class="categories-grid">
                         <div class="category-card" onclick="location.href='#'">
-                            <div class="category-icon"><img class="images-categoy" src="../assets/images/frutas.jpg" alt="frutas e legumes"></div>
+                            <div class="category-icon"><img class="images-categoy" src="../../../public/assets/images/frutas.jpg" alt="frutas e legumes"></div>
                             <h4>Frutas & Verduras</h4><p>Produtos frescos da horta</p>
                         </div>
                         <div class="category-card" onclick="location.href='#'">
-                            <div class="category-icon"><img class="images-categoy" src="../assets/images/artesanatos.jpg" alt="Artesanato"></div>
+                            <div class="category-icon"><img class="images-categoy" src="../../../public/assets/images/artesanatos.jpg" alt="Artesanato"></div>
                             <h4>Artesanato</h4><p>Peças únicas feitas à mão</p>
                         </div>
                         <div class="category-card" onclick="location.href='#'">
-                            <div class="category-icon"><img class="images-categoy" src="../assets/images/doces.jpg" alt="Doces"></div>
+                            <div class="category-icon"><img class="images-categoy" src="../../../public/assets/images/doces.jpg" alt="Doces"></div>
                             <h4>Doces & Conservas</h4><p>Sabores caseiros tradicionais</p>
                         </div>
                         <div class="category-card" onclick="location.href='#'">
-                            <div class="category-icon"><img class="images-categoy" src="../assets/images/laticinios.jpg" alt="Laticinios"></div>
+                            <div class="category-icon"><img class="images-categoy" src="../../../public/assets/images/laticinios.jpg" alt="Laticinios"></div>
                             <h4>Laticínios</h4><p>Queijos e derivados artesanais</p>
                         </div>
                         <div class="category-card" onclick="location.href='#'">
-                            <div class="category-icon"><img class="images-categoy" src="../assets/images/mudas.jpg" alt="Plantas e mudas"></div>
+                            <div class="category-icon"><img class="images-categoy" src="../../../public/assets/images/mudas.jpg" alt="Plantas e mudas"></div>
                             <h4>Plantas & Mudas</h4><p>Verde para seu lar</p>
                         </div>
                         <div class="category-card" onclick="location.href='#'">
-                            <div class="category-icon"><img class="images-categoy" src="../assets/images/temperos.jpg" alt="Temperos"></div>
+                            <div class="category-icon"><img class="images-categoy" src="../../../public/assets/images/temperos.jpg" alt="Temperos"></div>
                             <h4>Temperos & Ervas</h4><p>Sabores naturais</p>
                         </div>
                         <div class="category-card" onclick="location.href='#'">
-                            <div class="category-icon"><img class="images-categoy" src="../assets/images/paes.jpg" alt="Pães"></div>
+                            <div class="category-icon"><img class="images-categoy" src="../../../public/assets/images/paes.jpg" alt="Pães"></div>
                             <h4>Pães</h4><p>Pães e derivados</p>
                         </div>
                     </div>
