@@ -1,3 +1,58 @@
+<?php
+session_start();
+require_once __DIR__ . '/../../../config/database.php';
+require_once __DIR__ . '/../../../app/models/Produto.php';
+require_once __DIR__ . '/../../../app/models/Usuario.php';
+require_once __DIR__ . '/../../../app/helpers/auth.php';
+
+$pdo = conectar();  
+$produtoModel = new Produto($pdo);
+$usuarioModel = new Usuario($pdo);
+
+$carrinho = $_SESSION['carrinho'] ?? [];
+$carrinho_vazio = empty($carrinho);
+$total_itens = 0;
+$subtotal_carrinho = 0.00;
+$carrinho_por_produtor = [];
+
+foreach ($carrinho as $produto_id => $item) {
+    $produto = $produtoModel->buscarPorId($produto_id);
+
+    if (!$produto) continue;
+
+    $quantidade = $item['quantidade'];
+    $subtotal_item = $produto['preco'] * $quantidade;
+    $subtotal_carrinho += $subtotal_item;
+    $total_itens += $quantidade;
+
+    $produtor_id = $produto['produtor_id'];
+    if (!isset($carrinho_por_produtor[$produtor_id])) {
+        $produtor = $usuarioModel->buscarPorId($produtor_id);
+        $carrinho_por_produtor[$produtor_id] = [
+            'nome_produtor' => $produtor['nome'] ?? 'Produtor',
+            'itens' => [],
+            'subtotal_produtor' => 0.00
+        ];
+    }
+
+    $carrinho_por_produtor[$produtor_id]['itens'][] = [
+        'produto_id' => $produto['produto_id'],
+        'nome_produto' => $produto['nome'],
+        'preco' => $produto['preco'],
+        'quantidade' => $quantidade,
+        'estoque_disponivel' => $produto['quantidade_estoque'],
+        'imagem' => $produto['imagem_url'],
+        'unidade_medida' => $produto['unidade_medida']
+    ];
+    $carrinho_por_produtor[$produtor_id]['subtotal_produtor'] += $subtotal_item;
+}
+
+ $dadosUsuario = pegarDadosUsuario();
+$usuario_nome = $dadosUsuario['nome'];
+$tipo_usuario_logado = $dadosUsuario['tipo'];
+$iniciais_usuario = $dadosUsuario['iniciais'];
+?>
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 
@@ -5,8 +60,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Carrinho - Artezzana</title>
-    <link rel="stylesheet" href="../css/carrinho-styles.css">
-    <link rel="stylesheet" href="../css/global.css">
+    <link rel="stylesheet" href="../../../public/css/carrinho-styles.css">
+    <link rel="stylesheet" href="../../../public/css/global.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 
