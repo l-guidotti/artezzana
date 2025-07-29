@@ -1,10 +1,24 @@
+<?php
+require_once __DIR__ . '/../../../app/helpers/auth.php';
+
+verificarLogin();
+protegerRotaComprador();
+
+$dadosUsuario = pegarDadosUsuario();
+$usuario_nome = $dadosUsuario['nome'];
+$tipo_usuario_logado = $dadosUsuario['tipo'];
+$iniciais_usuario = $dadosUsuario['iniciais'];
+
+?>
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard do Comprador - Artezzana</title> <link rel="stylesheet" href="../css/dashboard-styles.css">
-    <link rel="stylesheet" href="../css/global.css">
+    <title>Dashboard do Comprador - Artezzana</title> 
+    <link rel="stylesheet" href="../../../public/css/dashboard-styles.css">
+    <link rel="stylesheet" href="../../../public/css/global.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         /* Estilos adicionais para os cards de produtos, se precisar ajustar no CSS principal depois */

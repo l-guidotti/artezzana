@@ -3,7 +3,7 @@
         <div class="container">
             <div class="logo">
                 <div class="logo-icon">
-                    <img class="image-icon" src="../assets/logos/logo-png.png" alt="logo-artezzana">
+                    <img class="image-icon" src="../../../public/assets/logos/logo-png.png" alt="logo-artezzana">
                 </div>
                 <h1>Artezzana</h1>
             </div>
@@ -32,7 +32,7 @@
                     <a href="#" onclick="showSettings()">Configurações</a>
                     <a href="#" onclick="showHelp()">Ajuda</a>
                     <hr>
-                    <a href="../../app/controllers/LogoutController.php">Sair</a>
+                    <a href="../../controllers/LoginController.php?action=logout">Sair</a>
                 </div>
             </div>
         </div>

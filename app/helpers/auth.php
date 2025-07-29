@@ -15,6 +15,13 @@ function protegerRotaProdutor() {
     }
 }
 
+function protegerRotaComprador() {
+    if (!isset($_SESSION['usuario_id']) || $_SESSION['tipo_usuario'] !== 'comprador') {
+        header('Location: /artezzana/app/views/auth/login.php');
+        exit();
+    }
+}
+
 function pegarDadosUsuario() {
     $usuario_nome = htmlspecialchars($_SESSION['usuario_nome'] ?? 'Usuário'); 
     $tipo_usuario_logado = htmlspecialchars($_SESSION['tipo_usuario'] ?? ''); 
