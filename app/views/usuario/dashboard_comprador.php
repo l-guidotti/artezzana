@@ -105,13 +105,8 @@ $iniciais_usuario = $dadosUsuario['iniciais'];
 </head>
 
 <body>
-    <?php 
-        // Você pode criar um header_comprador.php para links específicos do comprador
-        // ou usar um header_dashboard.php mais genérico.
-        // Por enquanto, vou manter o include e assumir que as variáveis $usuario_nome e $iniciais_usuario
-        // estão sendo passadas corretamente para ele.
-        include 'header_comprador.php'; 
-    ?>
+
+    <?php include 'header_comprador.php'; ?>
 
     <main class="main-content">
         <section class="welcome-section">
