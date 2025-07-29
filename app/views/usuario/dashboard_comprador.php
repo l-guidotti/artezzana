@@ -1,5 +1,22 @@
 <?php
 require_once __DIR__ . '/../../../app/helpers/auth.php';
+require_once __DIR__ . '/../../../config/database.php';
+
+$sql = "
+    SELECT p.id AS produto_id, p.nome, p.preco, p.imagem_url, u.nome AS nome_produtor
+    FROM produtos p
+    JOIN usuarios u ON p.produtor_id = u.id
+    ORDER BY p.data_cadastro DESC
+    LIMIT 5
+";
+
+$pdo = conectar();
+$stmt = $pdo->prepare($sql);
+$stmt->execute();
+$ultimos_produtos = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+
+
 
 verificarLogin();
 protegerRotaComprador();
