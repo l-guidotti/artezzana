@@ -3,7 +3,7 @@ require_once __DIR__ . '/../../../app/helpers/auth.php';
 require_once __DIR__ . '/../../../app/models/Produto.php';
 require_once __DIR__ . '/../../../config/database.php';
 
-$pdo = Database::conectar();
+$pdo = conectar();
 
 verificarLogin();
 protegerRotaProdutor();

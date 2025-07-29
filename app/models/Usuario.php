@@ -1,15 +1,14 @@
 <?php
+require_once __DIR__ . '/../../config/database.php'; 
+require_once __DIR__ . '/../controllers/LoginController.php'; 
 
 class Usuario {
-    // Propriedade para armazenar a conexão PDO
     private $pdo;
 
-    // Construtor: recebe a conexão PDO
     public function __construct(PDO $pdo) {
         $this->pdo = $pdo;
     }
 
-    // --- Métodos de CRUD (Create, Read, Update, Delete) ---
     public function criar(array $dados) {
         $sql = "INSERT INTO usuarios (
             nome, sobrenome, email, senha, telefone, cidade, estado, tipo_usuario, termos_aceitos, receber_marketing,
@@ -33,8 +32,6 @@ class Usuario {
             $stmt->bindValue(':tipo_usuario', $dados['tipo_usuario']);
             $stmt->bindValue(':termos_aceitos', $dados['termos_aceitos'] ? 't' : 'f', PDO::PARAM_BOOL);
             $stmt->bindValue(':receber_marketing', $dados['receber_marketing'] ? 't' : 'f', PDO::PARAM_BOOL);
-
-            // Campos de produtor (podem ser null)
             $stmt->bindValue(':nome_negocio', $dados['nome_negocio'] ?? null);
             $stmt->bindValue(':tipo_negocio', $dados['tipo_negocio'] ?? null);
             $stmt->bindValue(':descricao_negocio', $dados['descricao_negocio'] ?? null);
@@ -49,7 +46,6 @@ class Usuario {
         }
     }
 
-    // Busca um usuário pelo e-mail.
     public function buscarPorEmail(string $email) {
         $sql = "SELECT id, nome, email, senha, tipo_usuario FROM usuarios WHERE email = :email";
         try {
@@ -63,7 +59,6 @@ class Usuario {
         }
     }
 
-    //Busca um usuário pelo ID.
     public function buscarPorId(int $id) {
         $sql = "SELECT id, nome, email, tipo_usuario, nome_negocio, tipo_negocio, descricao_negocio, raio_entrega_km FROM usuarios WHERE id = :id";
         try {
@@ -77,7 +72,6 @@ class Usuario {
         }
     }
 
-    // Verifica se um e-mail já existe no banco de dados.
     public function emailExiste(string $email): bool {
         $sql = "SELECT COUNT(*) FROM usuarios WHERE email = :email";
         try {

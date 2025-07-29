@@ -21,7 +21,6 @@ class ProdutoController {
             $categoria = $_POST["categoria"] ?? '';
             if ($_FILES['imagem']['error'] === UPLOAD_ERR_OK) {
                 $nomeImagem = uniqid() . '_' . $_FILES['imagem']['name'];
-                // Caminho físico absoluto no servidor (onde salvar o arquivo)
                 $caminhoFisico = __DIR__ . '/../../public/imagens_produtos/' . $nomeImagem;
                 $caminhoImagem = '/artezzana/public/imagens_produtos/' . $nomeImagem;
                 move_uploaded_file($_FILES['imagem']['tmp_name'], $caminhoFisico);

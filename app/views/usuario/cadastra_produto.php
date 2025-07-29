@@ -5,7 +5,7 @@ require_once __DIR__ . '/../../../app/controllers/ProdutoController.php';
 
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
-    $pdo = Database::conectar();
+    $pdo = conectar();
     $controller = new ProdutoController($pdo);
     $controller->cadastrar();
 }
