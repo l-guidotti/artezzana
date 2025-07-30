@@ -1,68 +1,70 @@
 <?php
-
 require_once __DIR__ . '/../../../config/database.php';
 require_once __DIR__ . '/../../../app/models/Produto.php';
 require_once __DIR__ . '/../../../app/models/Usuario.php';
 require_once __DIR__ . '/../../../app/helpers/auth.php';
-
-verificarLogin();
-protegerRotaComprador();
 
 // Checar se tem produto_id na URL
 $id_produto = $_GET['id'] ?? null;
 $mensagemErro = '';
 $mensagemSucesso = '';
 $produto = null;
-$produtorDoProduto = null;
 
 try {
     $pdo = conectar();
 
     if ($id_produto) {
-        $produtoModel = new Produto($pdo);
-        $produto = $produtoModel->buscarPorId($id_produto);
-
-        if ($produto && isset($produto['produtor_id'])) {
-            $usuarioModel = new Usuario($pdo);
-            $produtorDoProduto = $usuarioModel->buscarPorId($produto['produtor_id']);
-        }
+        $stmt = $pdo->prepare("SELECT p.*, u.nome AS nome_produtor, u.id AS id_produtor, u.cidade, u.estado 
+                               FROM produtos p
+                               JOIN usuarios u ON p.produtor_id = u.id
+                               WHERE p.id = :id");
+        $stmt->bindParam(':id', $id_produto, PDO::PARAM_INT);
+        $stmt->execute();
+        $produto = $stmt->fetch(PDO::FETCH_ASSOC);
     }
-
-    $idProduto = $_GET['id'];
-    $stmt = $pdo->prepare("SELECT p.*, u.nome AS nome_produtor, u.id AS id_produtor, u.cidade, u.estado 
-                        FROM produtos p
-                        JOIN usuarios u ON p.produtor_id = u.id
-                        WHERE p.id = :id");
-    $stmt->bindParam(':id', $idProduto, PDO::PARAM_INT);
-    $stmt->execute();
-    $produto = $stmt->fetch(PDO::FETCH_ASSOC);
-
 
     // Lógica de adicionar ao carrinho (caso seja POST)
     if ($_SERVER['REQUEST_METHOD'] === 'POST' && $_POST['action'] === 'add_to_cart') {
         $quantidade = (int) ($_POST['quantidade'] ?? 1);
 
         if ($produto && $quantidade > 0 && $quantidade <= $produto['quantidade_estoque']) {
-            // Exemplo de estrutura do carrinho na sessão
+            // Inicializa o carrinho se ainda não existir
+            if (!isset($_SESSION['carrinho'])) {
+                $_SESSION['carrinho'] = [];
+            }
+            // Adiciona ou atualiza a quantidade do produto no carrinho
             $_SESSION['carrinho'][$id_produto] = [
                 'produto_id' => $id_produto,
-                'quantidade' => $quantidade
+                'quantidade' => $quantidade,
+                'nome' => $produto['nome'], // Adicione informações úteis para o carrinho
+                'preco' => $produto['preco'],
+                'imagem_url' => $produto['imagem_url']
             ];
             $mensagemSucesso = 'Produto adicionado ao carrinho com sucesso!';
+            // Redireciona para evitar reenvio do formulário ao atualizar a página
+            header("Location: carrinho.php");
+            exit();
         } else {
             $mensagemErro = 'Quantidade inválida ou produto sem estoque.';
         }
     }
 
- $dadosUsuario = pegarDadosUsuario();
-$usuario_nome = $dadosUsuario['nome'];
-$tipo_usuario_logado = $dadosUsuario['tipo'];
-$iniciais_usuario = $dadosUsuario['iniciais'];
+
+    $dadosUsuario = pegarDadosUsuario();
+    $usuario_nome = $dadosUsuario['nome'];
+    $tipo_usuario_logado = $dadosUsuario['tipo'];
+    $iniciais_usuario = $dadosUsuario['iniciais'];
 
 } catch (Exception $e) {
     $mensagemErro = 'Erro ao carregar os dados do produto: ' . $e->getMessage();
 }
+
+// Lógica para exibir mensagem de sucesso após redirecionamento
+if (isset($_GET['success']) && $_GET['success'] === 'added') {
+    $mensagemSucesso = 'Produto adicionado ao carrinho com sucesso!';
+}
 ?>
+
 
 
 <!DOCTYPE html>
@@ -157,87 +159,5 @@ $iniciais_usuario = $dadosUsuario['iniciais'];
     <?php include 'footer_comprador.php'; ?>
 
     <script src="../js/dashboard-script.js"></script>
-    <!-- <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const quantityInput = document.getElementById('productQuantity');
-            const addToCartBtn = document.querySelector('.add-to-cart-btn'); // Seleciona o botão de adicionar ao carrinho
-            const buyNowBtn = document.querySelector('.buy-now-btn');
-            
-            // maxStock deve ser verificado se quantityInput existe
-            const maxStock = quantityInput ? parseInt(quantityInput.max) : 0;
-
-            if (quantityInput) {
-                quantityInput.addEventListener('input', function() {
-                    let value = parseInt(this.value);
-                    if (isNaN(value) || value < 1) {
-                        this.value = 1;
-                    } else if (value > maxStock) {
-                        this.value = maxStock;
-                    }
-                });
-            }
-
-            if (addToCartBtn) {
-                addToCartBtn.addEventListener('click', function() {
-                    const productId = this.dataset.productId; // Pega o ID do produto do atributo data-product-id do botão
-                    const quantity = parseInt(quantityInput.value);
-
-                    if (!productId) {
-                        alert('Erro: ID do produto não disponível.');
-                        return;
-                    }
-
-                    if (isNaN(quantity) || quantity <= 0) {
-                        alert('Por favor, insira uma quantidade válida.');
-                        return;
-                    }
-                    if (quantity > maxStock) {
-                        alert(`A quantidade solicitada (${quantity}) excede o estoque disponível (${maxStock}).`);
-                        return;
-                    }
-
-                    // Requisição AJAX para adicionar ao carrinho
-                    fetch('../../app/controllers/gerenciar_carrinho.php', { // URL DO CONTROLADOR DO CARRINHO
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/x-www-form-urlencoded',
-                        },
-                        // O 'action' no body do POST deve ser 'add_to_cart'
-                        body: `action=add_to_cart&produto_id=${productId}&quantidade=${quantity}` 
-                    })
-                    .then(response => {
-                        if (!response.ok) { // Verifica se a resposta HTTP não foi bem-sucedida (ex: 404, 500)
-                            throw new Error('Erro de rede ou servidor ao adicionar ao carrinho. Status: ' + response.status);
-                        }
-                        return response.json(); // Converte a resposta para JSON
-                    })
-                    .then(data => {
-                        if (data.success) {
-                            alert(data.message); 
-                            window.location.href = './carrinho.php'; // REDIRECIONAR PARA A PÁGINA DO CARRINHO APÓS SUCESSO
-                        } else {
-                            alert('Erro ao adicionar ao carrinho: ' + data.message); 
-                        }
-                    })
-                    .catch(error => {
-                        console.error('Erro na requisição AJAX:', error);
-                        alert('Ocorreu um erro ao adicionar o produto ao carrinho. Tente novamente. Detalhes: ' + error.message);
-                    });
-                });
-            }
-
-            if (buyNowBtn) {
-                buyNowBtn.addEventListener('click', function() {
-                    const productId = this.dataset.productId; 
-                    const quantity = parseInt(quantityInput.value);
-                    if (!productId) {
-                        alert('Erro: ID do produto não disponível.');
-                        return;
-                    }
-                    alert(`Comprando Produto ${productId} (${quantity} unidades) agora! (Lógica de compra direta a ser implementada)`);
-                });
-            }
-        });
-    </script> -->
 </body>
 </html>

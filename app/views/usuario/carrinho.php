@@ -1,9 +1,10 @@
 <?php
-session_start();
 require_once __DIR__ . '/../../../config/database.php';
 require_once __DIR__ . '/../../../app/models/Produto.php';
 require_once __DIR__ . '/../../../app/models/Usuario.php';
 require_once __DIR__ . '/../../../app/helpers/auth.php';
+
+verificarLogin();
 
 $pdo = conectar();  
 $produtoModel = new Produto($pdo);
@@ -36,7 +37,7 @@ foreach ($carrinho as $produto_id => $item) {
     }
 
     $carrinho_por_produtor[$produtor_id]['itens'][] = [
-        'produto_id' => $produto['produto_id'],
+        'produto_id' => $produto['id'],
         'nome_produto' => $produto['nome'],
         'preco' => $produto['preco'],
         'quantidade' => $quantidade,
@@ -95,10 +96,10 @@ $iniciais_usuario = $dadosUsuario['iniciais'];
                 <div class="cart-content <?= $carrinho_vazio ? 'hidden' : '' ?>" id="cartContent">
                     <div class="cart-layout">
                         <div class="cart-items">
-                            <div class="cart-items-header">
-                                <h2>Itens no Carrinho</h2>
-                                <button class="clear-cart-btn" onclick="clearCart()">Limpar Carrinho</button>
-                            </div>
+                            <form method="POST" action="../../controllers/CarrinhoController.php" style="display:inline;">
+                                <input type="hidden" name="action" value="limpar">
+                                <button type="submit" class="clear-cart-btn">Limpar Carrinho</button>
+                            </form>
 
                             <div class="cart-groups" id="cartGroups">
                                 <?php if (!empty($carrinho_por_produtor)): ?>
@@ -108,7 +109,7 @@ $iniciais_usuario = $dadosUsuario['iniciais'];
                                             <div class="producer-items">
                                                 <?php foreach ($produtor_data['itens'] as $item): ?>
                                                     <div class="cart-item-card" data-product-id="<?= htmlspecialchars($item['produto_id']) ?>">
-                                                        <img src="<?= htmlspecialchars($item['imagem'] ?? '../assets/images/placeholder_produto.png') ?>" alt="<?= htmlspecialchars($item['nome_produto']) ?>">
+                                                        <img style="width: 80px; height: 80px; border-radius: 8px; object-fit: cover;" src="<?= htmlspecialchars($item['imagem'] ?? '../assets/images/placeholder_produto.png') ?>" alt="<?= htmlspecialchars($item['nome_produto']) ?>">
                                                         <div class="item-details">
                                                             <h4><?= htmlspecialchars($item['nome_produto']) ?></h4>
                                                             <p>Preço unitário: R$ <?= number_format($item['preco'], 2, ',', '.') ?> / <?= htmlspecialchars($item['unidade_medida']) ?></p>
@@ -120,7 +121,12 @@ $iniciais_usuario = $dadosUsuario['iniciais'];
                                                         </div>
                                                         <div class="item-price-remove"> 
                                                             <span class="item-total-price">R$ <?= number_format($item['preco'] * $item['quantidade'], 2, ',', '.') ?></span>
-                                                            <button class="remove-item-btn" data-product-id="<?= htmlspecialchars($item['produto_id']) ?>">Remover</button>
+                                                            <form method="POST" action="../../controllers/CarrinhoController.php" style="display:inline;">
+                                                                <input type="hidden" name="action" value="remover">
+                                                                <input type="hidden" name="produto_id" value="<?= htmlspecialchars($item['produto_id']) ?>">
+                                                                <button type="submit" class="remove-item-btn">Remover</button>
+                                                            </form>
+
                                                         </div>
                                                     </div>
                                                 <?php endforeach; ?>
@@ -237,10 +243,9 @@ $iniciais_usuario = $dadosUsuario['iniciais'];
                                     </div>
                                 </div>
 
-                                <button class="btn btn-primary btn-checkout" onclick="proceedToCheckout()"
-                                    id="checkoutBtn">
-                                    Finalizar Pedido
-                                </button>
+                                <form action="/artezzana/app/controllers/FinalizarPedidos.php" method="post">
+                                    <button type="submit">Finalizar Pedido</button>
+                                </form>
 
                                 <div class="security-info">
                                     <small>🔒 Seus dados estão protegidos</small>
@@ -307,14 +312,14 @@ $iniciais_usuario = $dadosUsuario['iniciais'];
 
     <?php include 'footer_comprador.php'; ?>
 
-    <script src="../js/carrinho-script.js"></script>
+    <!-- <script src="../../../public/js/carrinho-script.js"></script> -->
     <script>
         // Funções JavaScript básicas (se não estiverem em global.js ou dashboard-script.js)
         function toggleUserDropdown() {
             document.getElementById('userDropdown').classList.toggle('hidden');
         }
         function goToHome() {
-            window.location.href = '../index.php'; // Caminho para a página principal
+            window.location.href = './dashboard_comprador.php'; // Caminho para a página principal
         }
         function goToProducts() {
             window.location.href = 'dashboard_comprador.php'; // Ou o link correto para sua página de produtos
@@ -326,8 +331,6 @@ $iniciais_usuario = $dadosUsuario['iniciais'];
             document.getElementById(modalId).classList.add('hidden');
         }
 
-        // --- Funções JavaScript para o Carrinho (mover para carrinho-script.js) ---
-        // (Serão detalhadas na próxima resposta para serem movidas para carrinho-script.js)
     </script>
 </body>
 

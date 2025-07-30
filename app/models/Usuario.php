@@ -1,6 +1,5 @@
 <?php
 require_once __DIR__ . '/../../config/database.php'; 
-require_once __DIR__ . '/../controllers/LoginController.php'; 
 
 class Usuario {
     private $pdo;
@@ -12,10 +11,10 @@ class Usuario {
     public function criar(array $dados) {
         $sql = "INSERT INTO usuarios (
             nome, sobrenome, email, senha, telefone, cidade, estado, tipo_usuario, termos_aceitos, receber_marketing,
-            nome_negocio, tipo_negocio, descricao_negocio, raio_entrega_km
+            nome_negocio, tipo_negocio, descricao_negocio, raio_entrega
         ) VALUES (
             :nome, :sobrenome, :email, :senha_hash, :telefone, :cidade, :estado, :tipo_usuario, :termos_aceitos, :receber_marketing,
-            :nome_negocio, :tipo_negocio, :descricao_negocio, :raio_entrega_km
+            :nome_negocio, :tipo_negocio, :descricao_negocio, :raio_entrega
         )";
 
         try {
@@ -60,7 +59,7 @@ class Usuario {
     }
 
     public function buscarPorId(int $id) {
-        $sql = "SELECT id, nome, email, tipo_usuario, nome_negocio, tipo_negocio, descricao_negocio, raio_entrega_km FROM usuarios WHERE id = :id";
+        $sql = "SELECT id, nome, email, tipo_usuario, nome_negocio, tipo_negocio, descricao_negocio, raio_entrega FROM usuarios WHERE id = :id";
         try {
             $stmt = $this->pdo->prepare($sql);
             $stmt->bindValue(':id', $id, PDO::PARAM_INT);
