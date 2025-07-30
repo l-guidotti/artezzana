@@ -1,4 +1,5 @@
 <?php
+
 require_once __DIR__ . '/../../../config/database.php';
 require_once __DIR__ . '/../../../app/models/Produto.php';
 require_once __DIR__ . '/../../../app/models/Usuario.php';
@@ -26,6 +27,16 @@ try {
             $produtorDoProduto = $usuarioModel->buscarPorId($produto['produtor_id']);
         }
     }
+
+    $idProduto = $_GET['id'];
+    $stmt = $pdo->prepare("SELECT p.*, u.nome AS nome_produtor, u.id AS id_produtor, u.cidade, u.estado 
+                        FROM produtos p
+                        JOIN usuarios u ON p.produtor_id = u.id
+                        WHERE p.id = :id");
+    $stmt->bindParam(':id', $idProduto, PDO::PARAM_INT);
+    $stmt->execute();
+    $produto = $stmt->fetch(PDO::FETCH_ASSOC);
+
 
     // Lógica de adicionar ao carrinho (caso seja POST)
     if ($_SERVER['REQUEST_METHOD'] === 'POST' && $_POST['action'] === 'add_to_cart') {
@@ -61,7 +72,7 @@ $iniciais_usuario = $dadosUsuario['iniciais'];
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?= htmlspecialchars($produto['nome'] ?? 'Detalhes do Produto') ?> - Artezzana</title>
     <link rel="stylesheet" href="../css/detalhes-produto-styles.css">
-    <link rel="stylesheet" href="../css/carrinho-styles.css">
+    <link rel="stylesheet" href="../../../public/css/carrinho-styles.css">
     <link rel="stylesheet" href="../../../public/css/global.css">
     <link rel="stylesheet" href="../../../public/css/dashboard-styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -103,7 +114,7 @@ $iniciais_usuario = $dadosUsuario['iniciais'];
                         </div>
 
                         <div class="product-actions">
-                            <form action="detalhes_produto.php?id=<?= $id_produto ?>" method="POST">
+                            <form method="POST" action="detalhes_produto.php?id=<?= $id_produto ?>">
                                 <input type="hidden" name="action" value="add_to_cart">
                                 <label for="quantidade">Qtd:</label>
                                 <input type="number" id="quantidade" name="quantidade" value="1" min="1" max="<?= htmlspecialchars($produto['quantidade_estoque'] ?? 0) ?>" required>
@@ -120,8 +131,9 @@ $iniciais_usuario = $dadosUsuario['iniciais'];
 
                         <div class="producer-info">
                             <h3>Sobre o Produtor</h3>
-                            <p>Vendido por: <a href="perfil_produtor.php?id=<?= htmlspecialchars($produtorDoProduto['id'] ?? '') ?>" class="producer-link"><?= htmlspecialchars($produtorDoProduto['nome'] ?? 'Desconhecido') ?></a></p>
-                            <p>Localização: <?= htmlspecialchars($produtorDoProduto['cidade'] ?? 'N/A') ?>, <?= htmlspecialchars($produtorDoProduto['estado'] ?? 'N/A') ?></p>
+                            <p>Vendido por: <a href="perfil_produtor.php?id=<?= $produto['id_produtor'] ?>"><?= $produto['nome_produtor'] ?></a></p>
+                            <p>Localização: <?= $produto['cidade'] ?>, <?= $produto['estado'] ?></p>
+
                         </div>
 
                         <div class="related-products">
@@ -145,7 +157,7 @@ $iniciais_usuario = $dadosUsuario['iniciais'];
     <?php include 'footer_comprador.php'; ?>
 
     <script src="../js/dashboard-script.js"></script>
-    <script>
+    <!-- <script>
         document.addEventListener('DOMContentLoaded', function() {
             const quantityInput = document.getElementById('productQuantity');
             const addToCartBtn = document.querySelector('.add-to-cart-btn'); // Seleciona o botão de adicionar ao carrinho
@@ -226,6 +238,6 @@ $iniciais_usuario = $dadosUsuario['iniciais'];
                 });
             }
         });
-    </script>
+    </script> -->
 </body>
 </html>

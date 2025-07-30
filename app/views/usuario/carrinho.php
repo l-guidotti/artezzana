@@ -317,7 +317,7 @@ $iniciais_usuario = $dadosUsuario['iniciais'];
             window.location.href = '../index.php'; // Caminho para a página principal
         }
         function goToProducts() {
-            window.location.href = 'produtos.php'; // Ou o link correto para sua página de produtos
+            window.location.href = 'dashboard_comprador.php'; // Ou o link correto para sua página de produtos
         }
         function goToOrders() {
             alert('Meus Pedidos em desenvolvimento!'); // Implementar redirecionamento real

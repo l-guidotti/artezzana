@@ -85,7 +85,7 @@ if (isset($_GET['action'])) {
     require_once __DIR__ . '/../models/Produto.php';
     require_once __DIR__ . '/../../config/database.php';
 
-    $pdo = Database::conectar();
+    $pdo = conectar();
     $produtoModel = new Produto($pdo);
     $controller = new ProdutoController($pdo);
 
